@@ -13,3 +13,4 @@ gpg --list-keys
 $ echo "este mensaje es secreto" > doc_no_cifrado.txt
 ls 
 cat doc_no_cifrado.txt
+gpg --output doc_cifrado.txt --encrypt --recipient laquisnancela@gmail.com doc_no_cifrado.txt
