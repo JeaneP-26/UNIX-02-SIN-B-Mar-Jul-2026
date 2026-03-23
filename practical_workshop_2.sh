@@ -11,3 +11,5 @@ gpg --armor --export-secret-keys 3B2DD130907A2F2E
 gpg --import mi_compa_llave_publica.asc
 gpg --list-keys
 $ echo "este mensaje es secreto" > doc_no_cifrado.txt
+ls 
+cat doc_no_cifrado.txt
