@@ -14,3 +14,4 @@ $ echo "este mensaje es secreto" > doc_no_cifrado.txt # Crea un archivo de texto
 ls # Lista los archivos
 cat doc_no_cifrado.txt # Muestra el contenido del archivo sin cifrar
 gpg --output doc_cifrado.txt --encrypt --recipient laquisnancela@gmail.com doc_no_cifrado.txt # Cifra el archivo usando la clave pública del destinatario y genera un archivo cifrado
+gpg --decrypt doc_cifrado_1.txt #Decifra el documento enviado por mi companero
