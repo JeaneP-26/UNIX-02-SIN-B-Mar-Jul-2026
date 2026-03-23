@@ -15,3 +15,7 @@ ls # Lista los archivos
 cat doc_no_cifrado.txt # Muestra el contenido del archivo sin cifrar
 gpg --output doc_cifrado.txt --encrypt --recipient laquisnancela@gmail.com doc_no_cifrado.txt # Cifra el archivo usando la clave pública del destinatario y genera un archivo cifrado
 gpg --decrypt doc_cifrado_1.txt #Decifra el documento enviado por mi companero
+gpg --output doc_no_cifrado_firmado.txt --clearsign doc_no_cifrado.txt #Firma el archivo con gnupg/clearsign
+ls # Lista todos los archivos
+cat doc_no_cifrado_firmado.txt # Muestra en pantalla el contenido del archivo y su firma digital en el texto
+
