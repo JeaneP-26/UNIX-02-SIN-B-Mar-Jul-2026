@@ -19,3 +19,4 @@ gpg --output doc_no_cifrado_firmado.txt --clearsign doc_no_cifrado.txt #Firma el
 ls # Lista todos los archivos
 cat doc_no_cifrado_firmado.txt # Muestra en pantalla el contenido del archivo y su firma digital en el texto
 
+
