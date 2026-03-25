@@ -32,3 +32,4 @@ gpg --output firma_separada_doc_no_cifrado.sig --detach-sign doc_no_cifrado.txt 
 gpg --verify firma_separado_doc_no_cifrado_1.sig doc_no_cifrado_1.txt #Verify the separate signature of our partner
 gpg --pinentry-mode loopback --output doc_cifrado_y_firmado.txt --encrypt --sign --recipient 9B13E2392E210FF7A3A0EF4BDFA1A9B4A5C355EE doc_no_cifrado.txt #Sign and encrypt a document
 gpg --pinentry-mode loopback --output doc_cifrado_y_firmado_descifrado_y_validado.txt --decrypt doc_cifrado_y_firmado_1.txt #Validate the signature and decrypt it
+cat doc_cifrado_y_firmado_descifrado_y_validado.txt #Validate the decrypt of the document and the signature
