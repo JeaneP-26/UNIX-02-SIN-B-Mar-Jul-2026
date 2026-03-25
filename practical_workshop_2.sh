@@ -24,4 +24,4 @@ gpg --sign-key DFA1A9B4A5C355EE #Sign the key of our decision
 gpg --verify doc_no_cifrado_firmado_1.txt #Return to verify the signature of our partner
 gpg --output doc_no_cifrado_firmado_binario.txt --sign doc_no_cifrado.txt #Sign the document in binary
 gpg --verify doc_no_cifrado_firmado_binario_1.txt #Verify the signature in binary of our partner
-
+gpg --output firma_separada_doc_no_cifrado.sig --detach-sign doc_no_cifrado.txt #Sign a document with a separate document
