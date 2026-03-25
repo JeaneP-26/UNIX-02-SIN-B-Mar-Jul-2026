@@ -23,4 +23,4 @@ gpg --edit-key 9B13E2392E210FF7A3A0EF4BDFA1A9B4A5C355EE #Web of Trust to our par
 gpg --sign-key DFA1A9B4A5C355EE #Sign the key of our decision
 gpg --verify doc_no_cifrado_firmado_1.txt #Return to verify the signature of our partner
 gpg --output doc_no_cifrado_firmado_binario.txt --sign doc_no_cifrado.txt #Sign the document in binary
-
+gpg --verify doc_no_cifrado_firmado_binario_1.txt #Verify the signature in binary of our partner
