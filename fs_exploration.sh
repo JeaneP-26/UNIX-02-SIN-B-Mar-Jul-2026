@@ -5,3 +5,4 @@ sudo apt install parted # Install the "Parted" tool, used to manage disk partiti
 #The order to follow is update, upgrade and install
 
 sudo parted -l && -e "\n---\n" && lsblk -f && echo -e "\n---\n" # Display partitions and file with separators, print a visual separator, list the block devices with their file systems, and display another separator again to organize the output.
+lsblk -f #Show the storage devices and their file systems
