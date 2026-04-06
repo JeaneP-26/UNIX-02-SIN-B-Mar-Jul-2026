@@ -23,3 +23,9 @@ stat . #Displays detailed information about the current directory (".")
 #Device: 0,45
 # Identifies the storage device where this directory is located.
 
+
+mkdir -p /tmp/prueba/sub1 /tmp/prueba/sub2 # Creates directories in the specified paths
+# -p : Creates parent directories if they don’t exist
+stat /tmp/prueba # Displays detailed information about the directory /tmp/prueba
+# Shows metadata like size, permissions, inode, timestamps, etc.
+man mkdir -p /tmp/prueba/sub1 /tmp/prueba/sub2 # Opens the manual (help page) for the mkdir command
