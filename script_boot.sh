@@ -11,3 +11,15 @@ ls -lai #Lists all files and directories in the current directory with detailed 
 #total 12
 #925546 drwxr-xr-x 2 codespace codespace 4096 Apr  6 12:34 .
 #918515 drwxr-x--- 1 codespace codespace 4096 Apr  6 12:34 ..
+
+
+stat . #Displays detailed information about the current directory (".")
+#Shows metadata such as size, permissions, inode number, timestamps (access, modify, change), and more.
+#Size: 4096
+# The size of the directory in bytes.
+# For directories, this usually represents the space used to store its entries.
+#Blocks: 8
+# Number of disk blocks allocated to this directory.
+#Device: 0,45
+# Identifies the storage device where this directory is located.
+
