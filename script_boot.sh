@@ -29,3 +29,15 @@ mkdir -p /tmp/prueba/sub1 /tmp/prueba/sub2 # Creates directories in the specifie
 stat /tmp/prueba # Displays detailed information about the directory /tmp/prueba
 # Shows metadata like size, permissions, inode, timestamps, etc.
 man mkdir -p /tmp/prueba/sub1 /tmp/prueba/sub2 # Opens the manual (help page) for the mkdir command
+
+
+pwd #Where am I
+whoami #Who am I
+ls #List
+ls -l #Lists files and directories in the current directory using long format
+ls -la #Combine the commands: ls -l / ls -a, Shows the type of file and the permissions
+ls -lh  #Combine the commands: ls -l / ls -h, Lists files and directories in long format with human-readable sizes
+ls -lt #When each file was modified, Lists files and directories in long format, sorted by modification time
+ls / #What are in the system root
+ls /etc | head -20 #Explore the system directories
+ls /dev | head -20 #Explore the system directories
