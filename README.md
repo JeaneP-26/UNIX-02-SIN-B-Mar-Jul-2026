@@ -4,8 +4,8 @@ El sistema que vamos a construir tiene tres componentes:
 2. **BusyBox** - proporciona las utilidades basicas de Unix (ls, pwd, vi,etc.) en un solo binario
 3. **Syslinux** - el bootloader que carga todo al arrancar
 
-sudo apt update:
-sudo apt upgrade: 
+sudo apt update
+sudo apt upgrade
 sudo apt install -y git vim make gcc libncurses-dev flex bison bc cpio libelf-dev libssl-dev syslinux dosfstools qemu-system-x86
 
 
@@ -21,6 +21,8 @@ sudo apt install -y git vim make gcc libncurses-dev flex bison bc cpio libelf-de
 
 Clona el repositorio del kernel (solo el ultimo commit para ahorrar tiempo y espacio):
 git clone --depth 1 https://github.com/torvalds/linux.git
-cd linux
-make menuconfig
-make -j 2
+cd linux  # Go into the "linux" directory.
+make menuconfig # Open the kernel configuration menu.
+make -j 2 # Compile using 2 parallel jobs.
+sudo mkdir -p /boot-files # Create /boot-files directory with admin rights.
+
