@@ -46,9 +46,14 @@ man git-clone
 
 
 chmod +x script.sh # Add execute permission to all users
+ls -l #Results: -rwx--x--x 1 codespace codespace  1770 Apr 13 13:12 script.sh
 chmod u+x script.sh # Add execute permission to the owner (user)
+ls -l #Results: -rwx--x--x 1 codespace codespace  1856 Apr 13 13:14 script.sh
 chmod o-r script.sh # Remove read permission from others
+ls -l #Results: -rwx--x--x 1 codespace codespace  1934 Apr 13 13:14 script.sh
 chmod u+rw,go-rwx script.sh 
 # Owner: read and write.
 # Group & others: no permissions
+ls -l #Results: -rwx------ 1 codespace codespace  2012 Apr 13 13:15 script.sh
+
 
