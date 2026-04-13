@@ -44,3 +44,11 @@ man git-clone
     #unless --no-single-branch is given to fetch the histories near the tips of all branches. If you want to
     #clone submodules shallowly, also pass --shallow-submodules.
 
+
+chmod +x script.sh # Add execute permission to all users
+chmod u+x script.sh # Add execute permission to the owner (user)
+chmod o-r script.sh # Remove read permission from others
+chmod u+rw,go-rwx script.sh 
+# Owner: read and write.
+# Group & others: no permissions
+
