@@ -28,3 +28,6 @@ mkdir -- -rf
 rmdir -- -rf
 # Remove the directory named "-rf".
 # -- : ensures "-rf" is not interpreted as options.
+
+ls --help #Short Option,show a short help message with options for ls
+man ls #Large Option, open the manual page for the ls command
