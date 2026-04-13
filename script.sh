@@ -31,3 +31,9 @@ rmdir -- -rf
 
 ls --help #Short Option,show a short help message with options for ls
 man ls #Large Option, open the manual page for the ls command
+#/palabra: search for a word (e.g., /size)
+#n: go to the next search result
+#N: go back to the previous result
+#q: quit the manual
+
+
