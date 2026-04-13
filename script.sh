@@ -20,3 +20,11 @@ ls -l -a -h
 #Option (-h): displays sizes in a human-readable format (KB, MB, etc.)
 ls -l -ah #Large Option
 ls -lah #Short Option
+
+
+mkdir -- -rf
+# Create a directory literally named "-rf".
+# -- : stops option parsing, so "-rf" is treated as a name, not options.
+rmdir -- -rf
+# Remove the directory named "-rf".
+# -- : ensures "-rf" is not interpreted as options.
