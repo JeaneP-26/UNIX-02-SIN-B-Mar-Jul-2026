@@ -81,3 +81,5 @@ echo "Hola"|sudo tee /etc/archivo_protegido
 #sudo tee /etc/archivo_protegido → writes that text into the file with administrator privileges
 
 
+
+
