@@ -62,3 +62,22 @@ sudo echo "Hola">/etc/archivo_protegido
 #bash: /etc/archivo_protegido: Permission denied
 #The issue is that sudo only applies to the echo command, while the redirection (>) is handled by the shell using your normal user permissions. 
 #Because of this, when it tries to write to a protected file, you’ll get a permission error.
+
+echo "Hola"|sudo tee /etc/archivo_protegido > /dev/null
+#echo "Hola" → generates the text you want to save.
+#| (pipe) → sends that text as input to the next command.
+#sudo tee /etc/archivo_protegido → tee receives the text and writes it to the file with administrator privileges.
+#/dev/null → The text is generated, but nothing appears on the screen because it is sent to /dev/null.
+cat /etc/archivo_protegido
+#Result:
+# Hola
+
+
+echo "Hola"|sudo tee /etc/archivo_protegido
+#Result:
+# Hola
+#echo "Hola" → generates the text
+#| → sends it to the next command
+#sudo tee /etc/archivo_protegido → writes that text into the file with administrator privileges
+
+
