@@ -90,5 +90,7 @@ cat /etc/archivo_protegido
 #Hola
 #chao
 
-
-
+sudo su - #switch to the root (administrator) user and start a full session logged in directly as root
+#Results:
+#root ➜ /workspaces/UNIX-02-SIN-B-Mar-Jul-2026 $ exit
+#logout
