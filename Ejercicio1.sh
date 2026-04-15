@@ -17,3 +17,13 @@ cat hola.sh
 #It executes the hola.sh script located in the current directory.
 #Result:
 #bash: ./hola.sh: Permission denied
+
+ls -l hola.sh # Shows file permissions and details
+#Result: -rw-rw-rw- 1 codespace codespace 44 Apr 15 13:04 hola.sh
+chmod +x hola.sh # Adds execute permission
+ls -l hola.sh
+#Result: -rwxrwxrwx 1 codespace codespace 44 Apr 15 13:04 hola.sh
+./hola.sh # Runs the script
+
+
+
