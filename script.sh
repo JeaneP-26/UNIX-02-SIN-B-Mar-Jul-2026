@@ -94,3 +94,12 @@ sudo su - #switch to the root (administrator) user and start a full session logg
 #Results:
 #root ➜ /workspaces/UNIX-02-SIN-B-Mar-Jul-2026 $ exit
 #logout
+
+echo "$HOME"
+#Double quotes ("") allow variable expansion.
+#$HOME is replaced with its actual value.
+#Result: /home/codespace
+echo '$HOME'
+#Single quotes ('') do NOT expand variables.
+#Everything is treated as literal text.
+#Result: $HOME
