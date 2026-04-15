@@ -81,5 +81,14 @@ echo "Hola"|sudo tee /etc/archivo_protegido
 #sudo tee /etc/archivo_protegido → writes that text into the file with administrator privileges
 
 
+sudo sh -c 'echo "chao" >> /etc/archivo_protegido'
+#sudo sh -c '...' → runs the entire command inside the quotes as administrator (root)
+#echo "chao" → generates the text
+#>> /etc/archivo_protegido → appends the text to the end of the file (does not overwrite it)
+cat /etc/archivo_protegido
+#Results:
+#Hola
+#chao
+
 
 
