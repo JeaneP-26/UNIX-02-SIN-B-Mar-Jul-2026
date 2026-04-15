@@ -26,4 +26,27 @@ ls -l hola.sh
 ./hola.sh # Runs the script
 
 
+ls /etc # Lists all files and directories inside /etc
+touch /etc/prueba.txt
+# Tries to create a file inside /etc
+# Fails with "Permission denied" because /etc is a protected directory
+# Regular users cannot write here
+#Result: touch: cannot touch '/etc/prueba.txt': Permission denied
+mkdir ~/mi_carpeta # Creates a folder in the home directory (~)
+apt install cowsay
+# Installs the cowsay package
+# Requires sudo because it modifies system files
+#Result:
+#E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
+#E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
 
+sudo touch /etc/prueba.txt
+# Uses admin privileges (root)
+# Allows creating the file in a protected directory
+sudo apt install cowsay
+# Installs cowsay with admin privileges
+#Result:
+#Reading package lists... Done
+#Building dependency tree... Done
+#Reading state information... Done
+#E: Unable to locate package cowsay
