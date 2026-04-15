@@ -12,3 +12,8 @@ cat hola.sh
 #Result:
 # !bin/sh
 # echo "Hola desde mi primer script"
+
+./hola.sh 
+#It executes the hola.sh script located in the current directory.
+#Result:
+#bash: ./hola.sh: Permission denied
