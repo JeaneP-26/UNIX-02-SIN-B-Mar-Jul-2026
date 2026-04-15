@@ -57,3 +57,8 @@ chmod u+rw,go-rwx script.sh
 ls -l #Results: -rwx------ 1 codespace codespace  2012 Apr 13 13:15 script.sh
 
 
+sudo echo "Hola">/etc/archivo_protegido
+#Result:
+#bash: /etc/archivo_protegido: Permission denied
+#The issue is that sudo only applies to the echo command, while the redirection (>) is handled by the shell using your normal user permissions. 
+#Because of this, when it tries to write to a protected file, you’ll get a permission error.
