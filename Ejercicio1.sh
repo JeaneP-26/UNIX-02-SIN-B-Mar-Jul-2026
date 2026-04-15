@@ -4,3 +4,11 @@ echo '#!bin/sh' > hola.sh
 #Result:
 #cat hola.sh
 # #!bin/sh
+
+echo 'echo "Hola desde mi primer script"' >> hola.sh
+#echo 'echo "Hola desde mi primer script"' → writes that line of code exactly as it is
+#>> hola.sh → appends that line to the end of the hola.sh file
+cat hola.sh
+#Result:
+# !bin/sh
+# echo "Hola desde mi primer script"
