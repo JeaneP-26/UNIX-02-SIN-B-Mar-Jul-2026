@@ -181,3 +181,10 @@ ls -l mi_archivo # Show details of "mi_archivo"
 umask # Show the current permission mask
 #Result:
 #0022
+
+sudo useradd -m -s /usr/bin/zsh luna  # Create user "luna" with home directory and zsh shell
+sudo chown luna mi_archivo  # Change owner of "mi_archivo" to user "luna"
+
+ls -l mi_archivo # Show detailed info of "mi_archivo" (permissions, owner, size, date)
+#Result:
+#-rw-r--r-- 1 luna codespace 5 Apr 27 13:14 mi_archivo
