@@ -143,3 +143,31 @@ ls -l # List files and directories with details
 #-rwxrwxrwx  1 codespace codespace   112 Apr 15 13:17 test.sh
 
 # No change in umask was applied because the user does not have the required permissions
+
+
+sudo apt-get update # Update package list
+sudo apt upgrade # Upgrade installed packages
+sudo apt-get install acl # Install ACL support
+sudo chown -R $(whoami) . # Change ownership of current directory to current user
+sudo setfacl -bnR . # Remove all ACLs recursively
+
+umask 077 # Set restrictive mask (only owner has permissions)
+touch secreto.txt # Create file (only owner can read/write)
+mkdir privado # Create directory (only owner has access)
+ls -l # List files and directories with details
+#Result
+#total 72
+#-rw-rw-rw- 1 codespace codespace  1788 Apr 15 13:27 Ejercicio1.sh
+#-rw-rw-rw- 1 codespace codespace   595 Apr 15 13:37 Ejercicio2.sh
+#-rw-rw-rw- 1 codespace root      34523 Apr 13 12:16 LICENSE
+#-rw-rw-rw- 1 codespace root          0 Apr 13 12:19 README.md
+#-rw-rw-rw- 1 codespace codespace     0 Apr 27 12:33 archivo1
+#-rw-rw-rw- 1 codespace codespace     0 Apr 27 12:36 archivo2
+#drwxrwxrwx 2 codespace codespace  4096 Apr 27 12:33 directorio1
+#drwxrwxrwx 2 codespace codespace  4096 Apr 27 12:36 directorio2
+#-rwxrwxrwx 1 codespace codespace    44 Apr 15 13:04 hola.sh
+#drwx------ 2 codespace codespace  4096 Apr 27 13:06 privado
+#-rwxr-xr-x 1 codespace codespace     0 Apr 15 13:34 prueba.txt
+#-rwx------ 1 codespace codespace  5979 Apr 27 13:06 script.sh
+#-rw------- 1 codespace codespace     0 Apr 27 13:06 secreto.txt
+#-rwxrwxrwx 1 codespace codespace   112 Apr 15 13:17 test.sh
