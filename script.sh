@@ -126,7 +126,7 @@ ls -l  # List files and directories with details
 
 umask 027 # Set default mask: remove write for group, and all permissions for others
 touch archivo2 # Create file "archivo2" (permissions affected by umask)
-mkdir dircetorio2 # Create directory "dircetorio2" (permissions affected by umask)
+mkdir directorio2 # Create directory "dircetorio2" (permissions affected by umask)
 ls -l # List files and directories with details
 #total 68
 #-rw-rw-rw-  1 codespace codespace  1788 Apr 15 13:27 Ejercicio1.sh
