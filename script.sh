@@ -107,3 +107,19 @@ echo '$HOME'
 umask #Defect Mask
 #It defines which permissions are removed when creating new files/directories
 #Result: 0022
+
+touch archivo1  # Create an empty file named "archivo1"
+mkdir directorio1  # Create a directory named "directorio1"
+ls -l  # List files and directories with details
+#Result:
+#total 60
+#-rw-rw-rw-  1 codespace codespace  1788 Apr 15 13:27 Ejercicio1.sh
+#-rw-rw-rw-  1 codespace codespace   595 Apr 15 13:37 Ejercicio2.sh
+#-rw-rw-rw-  1 codespace root      34523 Apr 13 12:16 LICENSE
+#-rw-rw-rw-  1 codespace root          0 Apr 13 12:19 README.md
+#-rw-rw-rw-  1 codespace codespace     0 Apr 27 12:33 archivo1
+#drwxrwxrwx+ 2 codespace codespace  4096 Apr 27 12:33 directorio1
+#-rwxrwxrwx  1 codespace codespace    44 Apr 15 13:04 hola.sh
+#-rwxr-xr-x  1 codespace codespace     0 Apr 15 13:34 prueba.txt
+#-rwx------  1 codespace codespace  3979 Apr 27 12:33 script.sh
+#-rwxrwxrwx  1 codespace codespace   112 Apr 15 13:17 test.sh
