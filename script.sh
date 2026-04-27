@@ -171,3 +171,13 @@ ls -l # List files and directories with details
 #-rwx------ 1 codespace codespace  5979 Apr 27 13:06 script.sh
 #-rw------- 1 codespace codespace     0 Apr 27 13:06 secreto.txt
 #-rwxrwxrwx 1 codespace codespace   112 Apr 15 13:17 test.sh
+
+umask 022 # Set default mask (others can read, not write)
+whoami  # Show current user
+echo "Hola"> mi_archivo # Create file "mi_archivo" with content "Hola"
+ls -l mi_archivo # Show details of "mi_archivo"
+#Result:
+#-rw-r--r-- 1 codespace codespace 5 Apr 27 13:14 mi_archivo
+umask # Show the current permission mask
+#Result:
+#0022
