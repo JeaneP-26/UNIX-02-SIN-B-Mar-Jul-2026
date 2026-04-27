@@ -207,3 +207,17 @@ sudo chown luna:grupo_test mi_archivo # Change owner to "luna" and group to "gru
 ls -l mi_archivo # Show updated details (owner and group)
 #Result:
 #-rw-r--r-- 1 luna grupo_test 5 Apr 27 13:14 mi_archivo
+
+mkdir -p proyecto/sub # Create "proyecto" and subdirectory "sub"
+touch proyecto/readme proyecto/sub/datos # Create files "readme" and "datos"
+sudo chown -R luna:grupo_test proyecto # Change owner to "luna" and group to "grupo_test" recursively
+ls -lR proyecto  # List all files and directories recursively with details
+#Results:
+#proyecto:
+#total 4
+#-rw-r--r-- 1 luna grupo_test    0 Apr 27 13:54 readme
+#drwxr-xr-x 2 luna grupo_test 4096 Apr 27 13:54 sub
+
+#proyecto/sub:
+#total 0
+#-rw-r--r-- 1 luna grupo_test 0 Apr 27 13:54 datos
