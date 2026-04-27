@@ -188,3 +188,22 @@ sudo chown luna mi_archivo  # Change owner of "mi_archivo" to user "luna"
 ls -l mi_archivo # Show detailed info of "mi_archivo" (permissions, owner, size, date)
 #Result:
 #-rw-r--r-- 1 luna codespace 5 Apr 27 13:14 mi_archivo
+
+groups
+#Results:
+#codespace docker pipx python oryx golang sdkman rvm php conda nvs nvm hugo ssh
+groupadd grupo_test
+groups
+touch comun
+ls -l comun
+
+newgrp # Start a new shell with your default group
+sudo newgrp  grupo_test # Switch to a new shell with group "grupo_test"
+groups # Show groups the current user belongs to
+#Results:
+#grupo_test root
+
+sudo chown luna:grupo_test mi_archivo # Change owner to "luna" and group to "grupo_test"
+ls -l mi_archivo # Show updated details (owner and group)
+#Result:
+#-rw-r--r-- 1 luna grupo_test 5 Apr 27 13:14 mi_archivo
