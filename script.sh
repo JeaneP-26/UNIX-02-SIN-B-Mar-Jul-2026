@@ -103,3 +103,7 @@ echo '$HOME'
 #Single quotes ('') do NOT expand variables.
 #Everything is treated as literal text.
 #Result: $HOME
+
+umask #Defect Mask
+#It defines which permissions are removed when creating new files/directories
+#Result: 0022
