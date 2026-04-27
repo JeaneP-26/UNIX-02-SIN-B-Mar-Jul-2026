@@ -123,3 +123,23 @@ ls -l  # List files and directories with details
 #-rwxr-xr-x  1 codespace codespace     0 Apr 15 13:34 prueba.txt
 #-rwx------  1 codespace codespace  3979 Apr 27 12:33 script.sh
 #-rwxrwxrwx  1 codespace codespace   112 Apr 15 13:17 test.sh
+
+umask 027 # Set default mask: remove write for group, and all permissions for others
+touch archivo2 # Create file "archivo2" (permissions affected by umask)
+mkdir dircetorio2 # Create directory "dircetorio2" (permissions affected by umask)
+ls -l # List files and directories with details
+#total 68
+#-rw-rw-rw-  1 codespace codespace  1788 Apr 15 13:27 Ejercicio1.sh
+#-rw-rw-rw-  1 codespace codespace   595 Apr 15 13:37 Ejercicio2.sh
+#-rw-rw-rw-  1 codespace root      34523 Apr 13 12:16 LICENSE
+#-rw-rw-rw-  1 codespace root          0 Apr 13 12:19 README.md
+#-rw-rw-rw-  1 codespace codespace     0 Apr 27 12:33 archivo1
+#-rw-rw-rw-  1 codespace codespace     0 Apr 27 12:36 archivo2
+#drwxrwxrwx+ 2 codespace codespace  4096 Apr 27 12:36 dircetorio2
+#drwxrwxrwx+ 2 codespace codespace  4096 Apr 27 12:33 directorio1
+#-rwxrwxrwx  1 codespace codespace    44 Apr 15 13:04 hola.sh
+#-rwxr-xr-x  1 codespace codespace     0 Apr 15 13:34 prueba.txt
+#-rwx------  1 codespace codespace  4817 Apr 27 12:36 script.sh
+#-rwxrwxrwx  1 codespace codespace   112 Apr 15 13:17 test.sh
+
+# No change in umask was applied because the user does not have the required permissions
