@@ -19,3 +19,21 @@ cat /etc/passwd | head -10
 #mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
 #news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
 
+cat /etc/group | head -10  # Show the first 10 lines of /etc/group
+#Result:
+#root:x:0:
+#daemon:x:1:
+#bin:x:2:
+#sys:x:3:
+#adm:x:4:
+#tty:x:5:
+#disk:x:6:
+#lp:x:7:
+#mail:x:8:
+#news:x:9:
+
+groups # Show groups of the current user
+#Result: root
+
+groups $USER  # Show groups of the current user using the $USER variable
+#Result: root
