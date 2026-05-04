@@ -18,3 +18,4 @@ cat /etc/passwd | head -10
 #lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
 #mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
 #news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+
