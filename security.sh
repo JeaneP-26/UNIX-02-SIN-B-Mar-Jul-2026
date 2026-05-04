@@ -138,3 +138,10 @@ cat /etc/gshadow
 #systemd-network:!*::
 #debian-tor:!::
 #tcpdump:!*::
+
+mkdir ~/proyecto_unix/ # Create "proyecto_unix" directory in home
+ls -la ~/proyecto_unix/ # List all contents (including hidden) with details
+#Result:
+#total 8
+#drwxr-xr-x 2 root root 4096 may  4 13:40 .
+#drwx------ 1 root root 4096 may  4 13:40 ..
