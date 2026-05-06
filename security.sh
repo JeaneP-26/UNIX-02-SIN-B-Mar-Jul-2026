@@ -219,3 +219,20 @@ grep -E "diseno|marketing|cache_web" /etc/group
 #marketing:x:2100:
 #cache_web:x:102:
 
+#View which groups the current user belongs to
+groups
+#Result: root
+id
+#Result: uid=0(root) gid=0(root) grupos=0(root)
+
+#Add a user to a group using low-level usermod
+usermod -aG desarrolladores $USER
+usermod -aG diseno $USER
+#In this section, an error occurs because $USER is empty
+#So it is corrected by explicitly using the username (root) to add users to the group
+usermod -aG desarrolladores root
+usermod -aG diseno root
+#Result:
+groups root
+#root : root desarrolladores diseno
+
