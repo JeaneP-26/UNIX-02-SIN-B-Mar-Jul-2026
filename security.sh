@@ -242,3 +242,16 @@ grep -E "desarrolladores|diseno" /etc/group
 #desarrolladores:x:1000:root
 #diseno:x:1001:root
 
+#Add user to a group using high-level adduser (Debian)
+adduser root marketing
+#Check current status
+id root
+#Result:
+#uid=0(root) gid=0(root) grupos=0(root),1000(desarrolladores),1001(diseno),2100(marketing
+grep root /etc/group
+#Result:
+#root:x:0:
+#desarrolladores:x:1000:root
+#diseno:x:1001:root
+#marketing:x:2100:root
+
