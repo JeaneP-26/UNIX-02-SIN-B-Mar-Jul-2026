@@ -275,3 +275,11 @@ usermod -aG diseno,marketing,grupo_temporal root
 id root  #Restored
 #Result:
 #uid=0(root) gid=0(root) grupos=0(root),1000(desarrolladores),1001(diseno),2100(marketing),2101(grupo_temporal)
+
+
+#Prepare the practice scenario
+mkdir -p ~/lab_chgrp/{proyectos,reportes,scripts}
+touch ~/lab_chgrp/proyectos/app.py
+touch ~/lab_chgrp/proyectos/config.json
+touch ~/lab_chgrp/reportes/informe.txt
+touch ~/lab_chgrp/scripts/deploy.sh
