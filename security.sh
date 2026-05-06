@@ -236,3 +236,9 @@ usermod -aG diseno root
 groups root
 #root : root desarrolladores diseno
 
+#Verify the changes in /etc/group
+grep -E "desarrolladores|diseno" /etc/group
+#Result:
+#desarrolladores:x:1000:root
+#diseno:x:1001:root
+
