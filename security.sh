@@ -154,3 +154,37 @@ sudo groupadd desarrolladores
 sudo groupadd -g 2000 operaciones  #Specific GID
 #System group (GID < 1000)
 sudo groupadd --system servicios_web
+
+#Verify that the groups were created
+grep "desarrolladores\|operaciones\|servicios_web" /etc/group
+#Results:
+#desarrolladores:x:1000:
+#operaciones:x:2000:
+#servicios_web:x:995:
+
+grep -E "desarrolladores|operaciones|servicios_web" /etc/group
+#desarrolladores:x:1000:
+#operaciones:x:2000:
+#servicios_web:x:995:
+
+#View main options
+groupadd --help
+#Result:
+#Modo de uso: groupadd [opciones] GRUPO
+#Opciones:
+#  -f, --force                   termina si el grupo ya existe, y cancela -g
+ #                               si el GID ya se está en uso
+ # -g, --gid GID                 utiliza GID para el nuevo grupo
+ # -h, --help                    muestra este mensaje de ayuda y termina
+ # -K, --key CLAVE=VALOR         sobrescribe los valores predeterminados de
+ #                               «/etc/login.defs»
+ # -o, --non-unique              permite crear grupos con GID (no únicos)
+ #                               duplicados
+ # -p, --password CONTRASEÑA     utiliza esta contraseña cifrada para el nuevo
+ #                               grupo
+ # -r, --system                  crea una cuenta del sistema
+ # -R, --root DIR_CHROOT         establece DIR_CHROOT como el directorio
+ #                               al cual hacer chroot
+ # -P, --prefix PREFIX_DIR       directory prefix
+ # -U, --users USERS             comma-separated list of users to add as
+#                               members of this group
