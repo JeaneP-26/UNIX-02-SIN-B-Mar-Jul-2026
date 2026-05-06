@@ -329,3 +329,18 @@ ls -la ~/lab_chgrp/reportes/
 #drwxr-xr-x 2 root root   4096 may  6 13:28 .
 #drwxr-xr-x 5 root root   4096 may  6 13:27 ..
 #-rw-r--r-- 1 root diseno    0 may  6 13:28 informe.txt
+
+#Change the entire directory recursively
+chgrp -R desarrolladores ~/lab_chgrp/scripts/
+ls -laR ~/lab_chgrp/scripts/
+#Result:
+#/root/lab_chgrp/scripts/:
+#total 8
+#drwxr-xr-x 2 root desarrolladores 4096 may  6 13:28 .
+#drwxr-xr-x 5 root root            4096 may  6 13:27 ..
+#-rw-r--r-- 1 root desarrolladores    0 may  6 13:28 deploy.sh
+
+#Use verbose to see what changes
+chgrp -Rv diseno ~/lab_chgrp/reportes/
+#el grupo de '/root/lab_chgrp/reportes/informe.txt' permanece como diseno
+#cambiado el grupo de '/root/lab_chgrp/reportes/' de root a diseno
