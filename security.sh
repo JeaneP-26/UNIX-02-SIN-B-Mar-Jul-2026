@@ -255,3 +255,16 @@ grep root /etc/group
 #diseno:x:1001:root
 #marketing:x:2100:root
 
+#Create a temporary group for the demo
+groupadd grupo_temporal
+usermod -aG grupo_temporal root
+id root #Named grupo_temporal
+#Result
+#uid=0(root) gid=0(root) grupos=0(root),1000(desarrolladores),1001(diseno),2100(marketing),2101(grupo_temporal)
+
+#Now the ERROR: using usermod without -a
+usermod -G desarrolladores root
+#This REMOVES all secondary groups except "desarrolladores"
+id root  #All other groups were lost
+#Result:
+#uid=0(root) gid=0(root) grupos=0(root),1000(desarrolladores)
