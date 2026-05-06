@@ -145,3 +145,12 @@ ls -la ~/proyecto_unix/ # List all contents (including hidden) with details
 #total 8
 #drwxr-xr-x 2 root root 4096 may  4 13:40 .
 #drwx------ 1 root root 4096 may  4 13:40 ..
+
+
+#Basic Sintaxis
+#groupadd [options] group_name
+#Create a simple group
+sudo groupadd desarrolladores
+sudo groupadd -g 2000 operaciones  #Specific GID
+#System group (GID < 1000)
+sudo groupadd --system servicios_web
