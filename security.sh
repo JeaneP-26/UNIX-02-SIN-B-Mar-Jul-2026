@@ -310,3 +310,22 @@ ls -la ~/lab_chgrp/proyectos/
 #drwxr-xr-x 5 root root            4096 may  6 13:27 ..
 #-rw-r--r-- 1 root desarrolladores    0 may  6 13:27 app.py
 #-rw-r--r-- 1 root root               0 may  6 13:27 config.json
+
+
+#Change the group of multiple files
+chgrp diseno \
+> ~/lab_chgrp/proyectos/config.json \
+> ~/lab_chgrp/reportes/informe.txt
+
+ls -ls ~/lab_chgrp/proyectos/
+#Result:
+#total 0
+#0 -rw-r--r-- 1 root desarrolladores 0 may  6 13:27 app.py
+#0 -rw-r--r-- 1 root diseno          0 may  6 13:27 config.json
+
+ls -la ~/lab_chgrp/reportes/
+#Result:
+#total 8
+#drwxr-xr-x 2 root root   4096 may  6 13:28 .
+#drwxr-xr-x 5 root root   4096 may  6 13:27 ..
+#-rw-r--r-- 1 root diseno    0 may  6 13:28 informe.txt
