@@ -188,3 +188,21 @@ groupadd --help
  # -P, --prefix PREFIX_DIR       directory prefix
  # -U, --users USERS             comma-separated list of users to add as
 #                               members of this group
+
+
+#View the GID range in the system
+grep "GID_MIN\|GID_MAX\|SYS_GID" /etc/login.defs
+#Results:
+#GID_MIN                  1000
+#GID_MAX                 60000
+#SYS_GID_MIN              101
+#SYS_GID_MAX              999
+#SUB_GID_MIN                100000
+#SUB_GID_MAX             600100000
+
+#System groups have a GID lower than the minimum user GID
+#In Ubuntu, typically
+#SYS_GID_MIN = 100
+#SYS_GID_MAX = 999
+#GID_MIN = 100
+#GID_MAX = 60000
