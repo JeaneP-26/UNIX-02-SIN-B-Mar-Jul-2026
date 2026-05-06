@@ -268,3 +268,10 @@ usermod -G desarrolladores root
 id root  #All other groups were lost
 #Result:
 #uid=0(root) gid=0(root) grupos=0(root),1000(desarrolladores)
+
+
+#Restore
+usermod -aG diseno,marketing,grupo_temporal root
+id root  #Restored
+#Result:
+#uid=0(root) gid=0(root) grupos=0(root),1000(desarrolladores),1001(diseno),2100(marketing),2101(grupo_temporal)
