@@ -283,3 +283,19 @@ touch ~/lab_chgrp/proyectos/app.py
 touch ~/lab_chgrp/proyectos/config.json
 touch ~/lab_chgrp/reportes/informe.txt
 touch ~/lab_chgrp/scripts/deploy.sh
+
+
+#View the initial state – all users have their own group
+ls -la ~/lab_chgrp/proyectos/
+#Result:
+#total 8
+#drwxr-xr-x 2 root root 4096 may  6 13:27 .
+#drwxr-xr-x 5 root root 4096 may  6 13:27 ..
+#-rw-r--r-- 1 root root    0 may  6 13:27 app.py
+#-rw-r--r-- 1 root root    0 may  6 13:27 config.json
+ls -la ~/lab_chgrp/reportes/
+#Result:
+#total 8
+#drwxr-xr-x 2 root root 4096 may  6 13:28 .
+#drwxr-xr-x 5 root root 4096 may  6 13:27 ..
+#-rw-r--r-- 1 root root    0 may  6 13:28 informe.txt
