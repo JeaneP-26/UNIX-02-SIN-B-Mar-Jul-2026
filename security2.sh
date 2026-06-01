@@ -10,3 +10,12 @@ ls -la ~/test_grupo_heredado.txt #Verify test file permissions
 #Result:
 #-rw-r--r-- 1 root root 0 jun  1 22:12 /root/test_grupo_heredado.txt
 # The group is the main group of the current user
+
+
+id -gn # Show only the name of the main group
+#Result:
+#root
+echo "Grupo actual: $(id -gn)" # Check the active group before switching
+#Result:
+#echo "Grupo actual: $(id -gn)"
+#Grupo actual: root
