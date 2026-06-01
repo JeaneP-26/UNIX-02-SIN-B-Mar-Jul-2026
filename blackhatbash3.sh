@@ -15,3 +15,6 @@ echo "This book's name is $book"
 #This book's name is black hat bash
 #+ echo 'This book'\''s name is black hat bash'
 #This book's name is black hat bash
+
+root_directory=$(ls -ld /)
+echo "${root_directory}"
