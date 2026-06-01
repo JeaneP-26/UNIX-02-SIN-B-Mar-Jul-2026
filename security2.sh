@@ -79,4 +79,7 @@ echo "Grupo restaurado: $(id -gn)" # Confirm the group has been restored
 #Grupo restaurado: root
 
 
-ls -la ~/antes_de_newgrp.txt ~/dentro_de_newgrp.txt
+ls -la ~/antes_de_newgrp.txt ~/dentro_de_newgrp.txt  #Compare files created before and inside newgrp
+#Result:
+#-rw-r--r-- 1 root root            0 jun  1 23:36 /root/antes_de_newgrp.txt
+#-rw-r--r-- 1 root desarrolladores 0 jun  1 22:42 /root/dentro_de_newgrp.txt
