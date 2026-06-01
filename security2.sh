@@ -21,6 +21,11 @@ echo "Grupo actual: $(id -gn)" # Check the active group before switching
 #Grupo actual: root
 
 
+touch ~/antes_de_newgrp.txt #Create test file in home directory
+ls -la ~/antes_de_newgrp.txt  #Verify test file permissions
+#Result:
+#-rw-r--r-- 1 root root 0 jun  1 23:36 /root/antes_de_newgrp.txt
+
 newgrp desarrolladores
 # Error:
 # Solution:
@@ -72,3 +77,6 @@ id -gn # Verify we returned to the original group
 echo "Grupo restaurado: $(id -gn)" # Confirm the group has been restored
 #Result:
 #Grupo restaurado: root
+
+
+ls -la ~/antes_de_newgrp.txt ~/dentro_de_newgrp.txt
