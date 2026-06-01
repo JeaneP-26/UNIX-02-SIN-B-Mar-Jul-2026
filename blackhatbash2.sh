@@ -25,3 +25,4 @@ bash -x blackhatbash2.sh # Set -x and set +x were added to the script to enable 
 #total 0
 #-rw-rw-rw- 1 root root 0 jun  1 13:21 myfile
 #+ set +x
+
