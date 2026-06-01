@@ -1,3 +1,7 @@
+#!/bin/bash
+
+#!/bin/bash -x 
+# Run the script in debug mode, displaying each command before executing it
 bash --version
 env
 echo ${SHELL}
