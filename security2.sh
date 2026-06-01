@@ -83,3 +83,26 @@ ls -la ~/antes_de_newgrp.txt ~/dentro_de_newgrp.txt  #Compare files created befo
 #Result:
 #-rw-r--r-- 1 root root            0 jun  1 23:36 /root/antes_de_newgrp.txt
 #-rw-r--r-- 1 root desarrolladores 0 jun  1 22:42 /root/dentro_de_newgrp.txt
+
+
+echo "PID del shell actual: $$"  # Newgrp creates a subshell - demonstrable with the PID
+#Result:
+#PID del shell actual: 574
+newgrp desarrolladores #Switch to desarrolladores group
+echo "PID dentro de newgrp: $$" #Check PID inside the newgrp subshell
+#Result:
+#PID dentro de newgrp: 44937
+# Different PID confirms this is a child process (subshell)
+exit # Exit subshell
+id -gn #Verify we returned to the original group
+#Result:
+#root
+groupadd grupo_restringido #Create a group with a password
+gpasswd grupo_restringido  #Set password for restricted group
+# Prompts to set a password for the group
+#Result:
+#Cambiando la contraseña para el grupo grupo_restringido
+#Nueva contraseña: 
+#Vuelva a introducir la nueva contraseña: 
+# /////////////My Password:Jeane2604////////////////
+
