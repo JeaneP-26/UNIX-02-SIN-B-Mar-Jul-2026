@@ -11,3 +11,5 @@ echo ${OSTYPE}
 ps -e -f
 ps -ef
 df --human-readable
+bash -r blackhatbash1.sh 
+# Run the script in restricted mode, limiting dangerous commands such as cd or redirects
