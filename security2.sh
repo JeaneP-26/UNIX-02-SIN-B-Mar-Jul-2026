@@ -19,3 +19,18 @@ echo "Grupo actual: $(id -gn)" # Check the active group before switching
 #Result:
 #echo "Grupo actual: $(id -gn)"
 #Grupo actual: root
+
+
+newgrp desarrolladores
+# Error:
+# Solution:
+# apt install util-linux-extra
+# groupadd desarrolladores
+# usermod -aG desarrolladores root
+# newgrp desarrolladores
+id -gn # Show only the name of the main group
+#Result:
+#desarrolladores
+echo "Nuevo grupo activo: $(id -gn)" # Verify that the active group has changed
+#Result:
+# Nuevo grupo activo: desarrolladores
