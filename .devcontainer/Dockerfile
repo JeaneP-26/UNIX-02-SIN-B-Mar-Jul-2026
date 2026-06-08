@@ -353,3 +353,20 @@ __set_prompt(){
 }
 PROMPT_COMMAND=__set_prompt
 EOF
+
+
+
+# ----------------------------------------------------------------------------
+# BLOCK m — CMD: the default command when the container starts
+# ----------------------------------------------------------------------------
+# CMD defines what runs when you do "docker run <image>" with no extra
+# arguments. It is NOT executed during the build — only at container
+# startup. This is the key difference from RUN:
+#   RUN  -> runs at BUILD time, result saved in a layer
+#   CMD  -> runs at START time, not saved in any layer
+#
+# Here we launch bash as an interactive shell so the container is
+# immediately usable from the command line. GitHub Codespaces overrides
+# this with its own integrated VS Code terminal, but having CMD defined
+# makes the image usable with plain "docker run" as well.
+CMD ["/usr/bin/bash"]
