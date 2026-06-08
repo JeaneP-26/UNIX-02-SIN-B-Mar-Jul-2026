@@ -266,26 +266,49 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 SHELL ["/bin/bash", "-c"]
 
 
+
 # ----------------------------------------------------------------------------
-# WORKDIR: directorio de trabajo al entrar al contenedor
+# BLOCK i — WORKDIR: set the default working directory
 # ----------------------------------------------------------------------------
-# Codespaces siempre monta el código del repositorio en
-# /workspaces/<nombre-del-repo>. Establecer /workspaces aquí hace que las
-# terminales se abran cerca de nuestros archivos del curso.
+# WORKDIR sets the directory that subsequent RUN, COPY, and CMD
+# instructions use, and also the directory where a terminal opens when
+# you attach to the container. GitHub Codespaces always mounts the
+# repository at /workspaces/<repo-name>, so starting at /workspaces puts
+# us one level above our course files — convenient for navigation.
 WORKDIR /workspaces
 
-# Configuración de Git para el contenedor:
-# - safe.directory *: confía en cualquier repo montado (necesario porque
-#   /workspaces/... tiene un UID distinto al de root dentro del container).
-# - init.defaultBranch main: evita warnings de "master vs main" en git init.
-# - pull.rebase false: merge por defecto al hacer pull (más intuitivo)
-# - git lfs install --system: registra los hooks de LFS globalmente para
-#   que, si un repo los necesita, funcionen sin sorpresas.
+
+# ----------------------------------------------------------------------------
+# BLOCK j — Git global configuration and LFS setup
+# ----------------------------------------------------------------------------
+# These git config --system lines write to /etc/gitconfig, which applies
+# to every user and every repository inside this container.
+#
+#   safe.directory '*'
+#     Codespaces mounts /workspaces with a different UID than the root
+#     user inside the container. By default Git refuses to operate on
+#     directories owned by a different user. This setting disables that
+#     check for all directories so Git works without "dubious ownership"
+#     errors.
+#
+#   init.defaultBranch main
+#     Sets "main" as the default branch name for new repositories,
+#     avoiding the deprecation warning about "master".
+#
+#   pull.rebase false
+#     When "git pull" finds diverging histories, use merge (not rebase)
+#     by default. Merge is more intuitive for beginners.
+#
+#   git lfs install --system
+#     Registers Git LFS hooks globally so that any repository that uses
+#     large file storage works automatically without per-repo setup.
 RUN git config --system --add safe.directory '*' \
  && git config --system init.defaultBranch main \
  && git config --system pull.rebase false \
  && git lfs install --system
 
+
+ 
 # ----------------------------------------------------------------------------
 # CMD: comando que se ejecuta por defecto al arrancar el contenedor
 # ----------------------------------------------------------------------------
