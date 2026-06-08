@@ -254,14 +254,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
- 
+
 
 # ----------------------------------------------------------------------------
-# SHELL: qué intérprete usar en los siguientes RUN
+# BLOCK h — SHELL: switch from sh to bash for subsequent RUN steps
 # ----------------------------------------------------------------------------
-# Por defecto Docker usa /bin/sh (un shell más limitado y antiguo). Lo
-# cambiamos a bash por si agregamos más instrucciones con sintaxis
-# moderna (arrays, [[ ]], etc.).
+# By default Docker executes RUN commands with /bin/sh, a minimal POSIX
+# shell that lacks many Bash features (arrays, [[ ]], process substitution,
+# here-strings, etc.). Switching to bash here means any RUN instruction
+# that follows can use full Bash syntax safely. — BHB Ch.1 (sh vs bash)
 SHELL ["/bin/bash", "-c"]
 
 
