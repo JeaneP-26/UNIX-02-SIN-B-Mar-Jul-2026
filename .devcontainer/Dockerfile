@@ -308,23 +308,48 @@ RUN git config --system --add safe.directory '*' \
  && git lfs install --system
 
 
- 
-# ----------------------------------------------------------------------------
-# CMD: comando que se ejecuta por defecto al arrancar el contenedor
-# ----------------------------------------------------------------------------
-# Lanza una shell bash interactiva. Codespaces la sobrescribe con su
-# propia terminal integrada de VS Code, pero es buena práctica dejarla
-# definida para que la imagen sea usable también con Docker puro.
-# Prompt del curso para bash
-RUN chsh -s /usr/bin/zsh root
 
-RUN cat >> /root/.zshrc <<'EOF'
+# ----------------------------------------------------------------------------
+# BLOCK k — Change the default shell for root to bash
+# ----------------------------------------------------------------------------
+# chsh -s changes the login shell for the specified user.
+# Here we set /usr/bin/bash as the default shell for root, so that when
+# Codespaces opens a terminal it starts bash.
+# Bash is the standard shell for most Linux systems and the main shell
+# used throughout this course. — BHB Ch.1 (the bash shell)
+RUN chsh -s /usr/bin/bash root
 
-PROMPT='%F{cyan}[Jeanella-Paredes]%f &F{yellow}%1~%f %(?.%F{green}✓.%F{red}x %?)%f %# '
+
+# ----------------------------------------------------------------------------
+# BLOCK l — Here-document: append custom prompt to .bashrc
+# ----------------------------------------------------------------------------
+# A here-document (heredoc) is a way to feed multiple lines of text
+# directly into a command without creating a separate file. The syntax is:
+#   command <<'EOF'
+#   ...lines of text...
+#   EOF
+# Everything between the two EOF markers is passed as standard input to
+# the command ("cat >>"). Using single-quoted 'EOF' tells the shell NOT
+# to expand variables inside the block — the text is written literally.
+# — BHB Ch.1 (redirection and standard input)
+#
+# We append to /root/.bashrc (the bash startup file) a function that
+# customizes the prompt via PROMPT_COMMAND. The prompt shows:
+#   [Jeanella-Paredes]  — student name in cyan
+#   current directory   — in yellow (last component only, \W)
+#   ✓ or ✗ <code>       — green checkmark if last command succeeded,
+#                         red cross with exit code if it failed
+#   $                   — the prompt character
+RUN cat >> /root/.bashrc <<'EOF'
+__set_prompt(){
+    local ec=$?
+    local mark
+    if [ $ec -eq 0 ]; then
+        mark='\[\e[32m\]✓\[\e[0m\]'
+    else
+        mark="\[\e[31m\]✗ $ec\[\e[0m\]"
+    fi
+    PS1="\[\e[36m\][Jeanella-Paredes]\[\e[0m\] \[\e[33m\]\W\[\e[0m\] $mark \$ "
+}
+PROMPT_COMMAND=__set_prompt
 EOF
-
-CMD ["/bin/zsh"]
-
-
-
-
