@@ -35,27 +35,32 @@ FROM kalilinux/kali-rolling:latest
 
 
 # ----------------------------------------------------------------------------
-# ENV: variables de entorno permanentes dentro del contenedor
+# BLOCK c — ENV: permanent environment variables inside the container
 # ----------------------------------------------------------------------------
-# Las variables de entorno son "ajustes globales" que cualquier programa
-# del sistema puede leer. Se escriben en MAYÚSCULAS por convención.
+# Environment variables are key=value pairs stored in the shell's
+# environment and inherited by every child process. Programs read them to
+# know how to behave without needing command-line flags every time.
+# By convention they are written in UPPER_CASE. — BHB Ch.1 (env vars)
 #
 #   DEBIAN_FRONTEND=noninteractive
-#     Le dice al instalador de paquetes (apt) "no me hagas preguntas
-#     interactivas, asume respuestas por defecto". Sin esto, algunos
-#     paquetes pausarían el build esperando que pulsemos una tecla y se
-#     quedaría colgado para siempre (porque no hay nadie mirando).
+#     Tells apt (the Debian/Kali package manager) to never ask interactive
+#     questions during installation. Without this, some packages would pause
+#     the build waiting for keyboard input that never comes, hanging forever.
 #
 #   LANG / LC_ALL=es_ES.UTF-8
-#     Configuran idioma y codificación de caracteres. UTF-8 es lo que
-#     permite que acentos, ñ, €, emojis, etc. se muestren bien.
+#     Set the language and character encoding for the container.
+#     UTF-8 is the encoding that supports accented letters, ñ, €, emojis,
+#     and virtually every human script. Without it, those characters may
+#     display as garbage. — BHB Ch.1 (standard I/O and encoding)
 #
 #   TERM=xterm-256color
-#     Le indica a los programas que la terminal admite 256 colores, para
-#     que vim, nvim, htop, etc. se vean con todos sus colores.
+#     Tells terminal programs that the terminal supports 256 colors.
+#     Tools like vim, nvim, and htop use this to display their full
+#     color schemes instead of falling back to plain black and white.
 #
-# La barra invertida "\" al final de cada línea significa "esto continúa
-# en la línea siguiente". Solo es para legibilidad.
+# The trailing backslash "\" is a line-continuation character — it means
+# "this logical line continues on the next physical line". It is purely
+# for human readability; Docker treats it as one single ENV instruction.
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=es_ES.UTF-8 \
     LC_ALL=es_ES.UTF-8 \
