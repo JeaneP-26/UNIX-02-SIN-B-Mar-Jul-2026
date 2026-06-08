@@ -81,47 +81,72 @@ RUN echo "wireshark-common wireshark-common/install-setuid boolean false" \
     | debconf-set-selections
 
 
+
 # ----------------------------------------------------------------------------
-# RUN: ejecutar comandos durante la construcción de la imagen
+# BLOCK e — RUN: the big install step
 # ----------------------------------------------------------------------------
-# Aquí instalamos TODO el software del curso en un solo RUN.
+# RUN executes a shell command during the image build. The result is
+# saved as a new layer. Here we install all course software in ONE single
+# RUN instruction.
 #
-#   apt-get update          -> actualiza la lista de paquetes disponibles
-#   apt-get install         -> descarga e instala los paquetes listados
-#     -y                    -> responde "sí" automáticamente
-#     --no-install-recommends -> instala SOLO lo esencial (no los extras
-#                                sugeridos). Ahorra cientos de MB.
+# Why one big RUN instead of many small ones?
+# Every RUN creates a separate layer. Layers are additive: even if you
+# delete a file in a later RUN, the bytes are still stored in the earlier
+# layer, making the final image larger. Doing everything in one RUN keeps
+# the image as small as possible. — BHB Ch.3 (Docker image size)
 #
-# ¿Por qué un solo RUN gigante y no 10 RUN pequeños?
-# Porque CADA RUN crea una capa nueva en la imagen. Menos capas = imagen
-# más pequeña, más rápida de construir y de descargar.
+# Key flags:
+#   apt-get update              -> refreshes the list of available packages
+#                                  from the Kali repositories
+#   apt-get install -y          -> installs packages; -y auto-answers "yes"
+#                                  to all confirmation prompts
+#   --no-install-recommends     -> installs only strictly required
+#                                  dependencies, skipping optional extras
+#                                  (saves hundreds of MB)
 #
-# El "&&" encadena comandos: ejecuta el siguiente SOLO SI el anterior
-# terminó bien. Si algo falla, el build se detiene con error (que es lo
-# que queremos: mejor un error claro que una imagen rota).
+# The "&&" operator chains commands: the next command only runs if the
+# previous one succeeded (exit code 0). If apt-get update fails, the
+# install step never starts, giving us a clear error instead of a
+# silently broken image. — BHB Ch.1 (exit codes) / BHB Ch.2 (flow control)
+#
+# The trailing "\" after each package name is line continuation — it keeps
+# the list readable without breaking the single RUN instruction.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     \
-    # === Editores de texto y shells (intérpretes de comandos) ===
+    # === Text editors and shells ===
+    # neovim / vim: terminal text editors used throughout the course.
+    # zsh: Z shell, a more feature-rich alternative to bash.
+    # bash-completion: adds Tab-completion hints for bash commands.
     neovim \
     vim \
     zsh \
     bash-completion \
     \
-    # === Herramientas de 4ta generación ===
-    # Estas son las protagonistas de las Unidades 2, 3 y 4:
+    # === Classic UNIX text-processing tools (BHB Ch.2) ===
+    # These are the core of Chapter 2 — text processing in the shell.
+    # perl:  scripting language with powerful regex support.
+    # make:  build automation tool that reads Makefiles.
+    # gawk:  GNU awk — processes structured text column by column;
+    #        e.g. "awk '{print $1}'" prints the first field of each line.
+    # sed:   stream editor — edits text line by line using regex;
+    #        e.g. "sed 's/foo/bar/'" replaces foo with bar. — BHB Ch.2
+    # grep:  searches lines matching a pattern; the most-used filter
+    #        in shell pipelines. — BHB Ch.2
     perl \
     make \
     gawk \
     sed \
     grep \
     \
-    # === Utilidades básicas de UNIX ===
-    # coreutils trae cat, ls, head, tail, sort, cut, tr, etc.
-    # findutils trae find y xargs.
-    # procps trae ps, top, kill (gestión de procesos).
-    # less = paginador para leer archivos largos.
-    # tree = muestra directorios como árbol.
-    # jq = procesa JSON desde la línea de comandos.
+    # === Core UNIX utilities ===
+    # coreutils: provides cat, ls, cp, mv, head, tail, sort, cut, tr...
+    #            the everyday building blocks of shell scripting. — BHB Ch.1
+    # findutils: provides find (search files by name/type/date) and xargs.
+    # procps:    provides ps, top, kill — process management commands.
+    # less:      a pager for reading long files one screen at a time.
+    # tree:      displays directory contents as a visual tree.
+    # jq:        parses and queries JSON from the command line;
+    #            useful for working with API responses. — BHB Ch.2
     coreutils \
     findutils \
     procps \
@@ -129,15 +154,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tree \
     jq \
     \
-    # === Páginas de manual (comando `man`) ===
-    # La imagen base de Kali viene sin documentación para
-    # ahorrar espacio. La reinstalamos porque en el curso "man bash" o
-    # "man grep" es material de consulta obligada.
+    # === Manual pages (the "man" command) ===
+    # The base Kali image strips documentation to save space. We reinstall
+    # it because "man bash", "man grep", etc. are essential references
+    # during the course. — BHB Ch.1 (using man pages)
     man-db \
     manpages \
     manpages-posix \
     \
-    # === Red básica y utilidades de descarga ===
+    # === Network and download utilities ===
+    # curl / wget: download files or make HTTP requests from the terminal.
+    # git / git-lfs: version control and large-file support for repos.
+    # ca-certificates: trusted TLS certificate authorities so HTTPS works.
+    # locales: the package that provides locale-gen (used further below).
     curl \
     wget \
     git \
@@ -145,22 +174,32 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     locales \
     \
-    # === Linter (revisor automático de errores) para scripts Bash ===
+    # === Shell script linter ===
+    # shellcheck analyzes Bash scripts and reports common mistakes,
+    # bad practices, and portability issues before you even run the script.
     shellcheck \
     \
-    # === Reconocimiento y escaneo de red ===
-    # nmap = el escáner de puertos más famoso.
-    # masscan = escaneo masivo de rangos grandes de IPs.
+    # === Network reconnaissance and scanning ===
+    # nmap:    the most widely used port and service scanner. — BHB Ch.3
+    # masscan: ultra-fast scanner for large IP ranges.
     nmap \
     masscan \
     \
-    # === Captura y análisis de paquetes de red ===
-    # tcpdump = capturador clásico por terminal.
-    # tshark = versión de terminal de Wireshark.
+    # === Packet capture and analysis ===
+    # tcpdump: classic command-line packet capture tool. — BHB Ch.3
+    # tshark:  terminal version of Wireshark; richer protocol decoding.
     tcpdump \
     tshark \
     \
-    # === Utilidades de red variadas ===
+    # === Miscellaneous network utilities ===
+    # netcat-traditional: reads/writes raw data over TCP/UDP ("nc").
+    # socat:    like netcat but supports more protocols and options.
+    # dnsutils: provides dig and nslookup for DNS queries.
+    # whois:    queries domain registration information.
+    # traceroute / mtr-tiny: trace the network path to a host.
+    # iproute2: modern "ip" command (replaces ifconfig/route).
+    # net-tools: legacy tools: ifconfig, netstat, route.
+    # iputils-ping: the ping command.
     netcat-traditional \
     socat \
     dnsutils \
@@ -171,20 +210,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     net-tools \
     iputils-ping \
     \
-    # === Anonimato: Tor y similares ===
-    # tor = cliente de la red Tor.
-    # torsocks = "envoltorio" que hace pasar cualquier comando por Tor.
-    # proxychains4 = encadena múltiples proxies.
-    # obfs4proxy = ofusca el tráfico de Tor para evadir bloqueos.
+    # === Anonymity and traffic obfuscation ===
+    # tor:         connects to the Tor anonymity network.
+    # torsocks:    wrapper that routes any command's traffic through Tor.
+    # proxychains4: chains multiple proxies together for traffic routing.
+    # obfs4proxy:  obfuscates Tor traffic to bypass censorship/blocking.
     tor \
     torsocks \
     proxychains4 \
     obfs4proxy \
     \
-    # === Cliente HTTP más legible que curl para aprender ===
+    # === Human-friendly HTTP client ===
+    # httpie ("http" command) is easier to read than curl for learning
+    # how HTTP requests and responses work.
     httpie \
     \
- # --- Después de instalar, activamos el idioma español ---
+    
+# --- Después de instalar, activamos el idioma español ---
  # sed busca "# es_ES.UTF-8" en /etc/locale.gen y le quita el "#" para
  # activar esa línea. Luego locale-gen compila los archivos de idioma.
  && sed -i 's/# es_ES.UTF-8/es_ES.UTF-8/' /etc/locale.gen \
