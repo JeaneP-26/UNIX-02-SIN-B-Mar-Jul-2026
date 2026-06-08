@@ -1,0 +1,1 @@
+blackhatbash5.sh: línea 10: lzl: orden no encontrada
