@@ -16,4 +16,7 @@ ping -c 3 "${TARGET}"  # Send only 3 ping packets to the target using the -c fla
 echo "The arguments are: $@" #Print all arguments passed to the script
 echo "The total number of arguments is: $#" #Print the total number of arguments passed to the script
 
-
+# Loop through all arguments and print each one on a separate line
+for args in "$@"; do
+ echo "${args}"
+done
