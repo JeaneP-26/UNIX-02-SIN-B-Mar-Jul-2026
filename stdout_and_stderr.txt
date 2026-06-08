@@ -9,12 +9,12 @@ lrwxrwxrwx    1 root root    9 may 15 11:37 lib64 -> usr/lib64
 drwxr-xr-x    2 root root 4096 may 31 04:02 media
 drwxr-xr-x    2 root root 4096 may 31 04:02 mnt
 drwxr-xr-x    2 root root 4096 may 31 04:02 opt
-dr-xr-xr-x  227 root root    0 jun  8 15:38 proc
+dr-xr-xr-x  234 root root    0 jun  8 15:38 proc
 drwx------    1 root root 4096 jun  1 13:10 root
 drwxr-xr-x    1 root root 4096 jun  1 12:38 run
 lrwxrwxrwx    1 root root    8 may 15 11:37 sbin -> usr/sbin
 drwxr-xr-x    2 root root 4096 may 31 04:02 srv
-dr-xr-xr-x   12 root root    0 jun  8 15:32 sys
+dr-xr-xr-x   12 root root    0 jun  8 16:11 sys
 drwxr-xrwt+   4 root root 4096 jun  8 15:42 tmp
 drwxr-xr-x    1 root root 4096 may 31 04:02 usr
 drwxr-xr-x    1 root root 4096 jun  1 13:09 var
