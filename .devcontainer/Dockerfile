@@ -225,20 +225,36 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # how HTTP requests and responses work.
     httpie \
     \
-    
-# --- Después de instalar, activamos el idioma español ---
- # sed busca "# es_ES.UTF-8" en /etc/locale.gen y le quita el "#" para
- # activar esa línea. Luego locale-gen compila los archivos de idioma.
+
+
+
+# --------------------------------------------------------------------------
+ # BLOCK f — Enable the Spanish locale
+ # --------------------------------------------------------------------------
+ # /etc/locale.gen lists all available locales, each commented out by
+ # default with a leading "# ". We use sed to remove that comment marker
+ # from the es_ES.UTF-8 line, activating it. Then locale-gen compiles
+ # the actual locale data files that programs use. — BHB Ch.2 (sed)
  && sed -i 's/# es_ES.UTF-8/es_ES.UTF-8/' /etc/locale.gen \
  && locale-gen \
  \
- # --- Limpieza final: reducir el tamaño de la imagen ---
- # apt deja archivos de caché que ya no necesitamos después de instalar.
- # Borrarlos aquí (en el mismo RUN) hace la capa final más pequeña.
- # Si los borráramos en otro RUN, seguirían ocupando en la capa anterior.
+ # --------------------------------------------------------------------------
+ # BLOCK g — Clean up cache to reduce image size
+ # --------------------------------------------------------------------------
+ # apt stores downloaded package files (.deb) and index lists on disk.
+ # After installation those files are no longer needed, but they still
+ # take up space inside the image layer.
+ # "apt-get clean" removes the cached .deb files.
+ # "rm -rf /var/lib/apt/lists/*" removes the package index files.
+ # Doing this in the SAME RUN instruction is critical: if we did it in a
+ # separate RUN, Docker would save the large files in the install layer
+ # and the cleanup would only add a tiny new layer on top — the total
+ # image size would not shrink. Combining them in one RUN means only the
+ # final, cleaned state is stored. — BHB Ch.3 (Docker layer optimization)
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
+ 
 
 # ----------------------------------------------------------------------------
 # SHELL: qué intérprete usar en los siguientes RUN
