@@ -34,3 +34,5 @@ fi
 #file.txt is a file.
 #[Jeanella-Paredes] UNIX-02-SIN-B-Mar-Jul-2026 e[32m✓ $ bash if_elif.sh dir_test
 #dir_test is a directory.
+#[Jeanella-Paredes] UNIX-02-SIN-B-Mar-Jul-2026 e[32m✓ $ bash if_elif.sh holamundo
+#holamundo is not a file or a directory.
