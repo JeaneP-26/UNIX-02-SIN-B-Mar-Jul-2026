@@ -70,39 +70,47 @@ EXPECTED_SCRIPTS=(
     "while.sh"                 # Another while loop variation script
 )
 
+
 # ============================================================
 # STEP 1 - Check that a folder was passed as argument
 # ============================================================
-echo ""
-echo -e "${BOLD}${BLUE}=================================================${RESET}"
-echo -e "${BOLD}${BLUE}   REPOSITORY AUDIT - blackhatbash branch        ${RESET}"
-echo -e "${BOLD}${BLUE}=================================================${RESET}"
-echo ""
 
-# $1 is whatever folder path you pass when running the script
-# Example: bash exercise2.sh repo_luis
+echo ""  # Print an empty line to add space before the header
+echo -e "${BOLD}${BLUE}=================================================${RESET}"  # Print top border of the header
+echo -e "${BOLD}${BLUE}   REPOSITORY AUDIT - blackhatbash branch        ${RESET}"  # Print the title
+echo -e "${BOLD}${BLUE}=================================================${RESET}"  # Print bottom border of the header
+echo ""  # Print an empty line after the header
+
+# $1 is the first argument the user passes when running the script
+# Example: bash exercise2.sh repo_luis → $1 would be "repo_luis"
+# -z means "is this variable empty?" — if no argument was given, show an error and stop
 if [ -z "$1" ]; then
-    echo -e "${RED}ERROR: You need to pass the repo folder as an argument.${RESET}"
-    echo -e "${YELLOW}Usage: bash exercise2.sh <folder>${RESET}"
-    echo -e "${YELLOW}Example: bash exercise2.sh repo_luis${RESET}"
-    exit 1
+    echo -e "${RED}ERROR: You need to pass the repo folder as an argument.${RESET}"  # Show error in red
+    echo -e "${YELLOW}Usage: bash exercise2.sh <folder>${RESET}"                     # Show correct usage
+    echo -e "${YELLOW}Example: bash exercise2.sh repo_luis${RESET}"                  # Show a real example
+    exit 1  # Stop the script immediately and return error code 1 to the terminal
 fi
 
+# Save the argument $1 into a variable with a more descriptive name
 CLONE_DIR="$1"
 
-# Check that the folder actually exists
+# Check that the folder the user passed actually exists on disk
+# ! means NOT — so this reads: "if this is NOT a directory, show an error"
+# -d checks if the path exists and is a directory
 if [ ! -d "$CLONE_DIR" ]; then
-    echo -e "${RED}ERROR: Folder '${CLONE_DIR}' does not exist.${RESET}"
-    echo -e "${YELLOW}Make sure you cloned the repo first with:${RESET}"
-    echo -e "${YELLOW}  git clone --branch blackhatbash <repo_url> ${CLONE_DIR}${RESET}"
-    exit 1
+    echo -e "${RED}ERROR: Folder '${CLONE_DIR}' does not exist.${RESET}"          # Show the bad folder name
+    echo -e "${YELLOW}Make sure you cloned the repo first with:${RESET}"           # Explain what to do
+    echo -e "${YELLOW}  git clone --branch blackhatbash <repo_url> ${CLONE_DIR}${RESET}"  # Show the exact command
+    exit 1  # Stop the script immediately and return error code 1 to the terminal
 fi
 
-# Show which repo we are auditing
+# basename extracts just the folder name from a full path
+# Example: /home/user/repo_luis → repo_luis
 REPO_NAME=$(basename "$CLONE_DIR")
-echo -e "${CYAN}Auditing local folder: ${BOLD}${CLONE_DIR}${RESET}"
-echo -e "${GREEN}Folder found. Starting audit...${RESET}"
-echo ""
+
+echo -e "${CYAN}Auditing local folder: ${BOLD}${CLONE_DIR}${RESET}"  # Tell the user which folder is being audited
+echo -e "${GREEN}Folder found. Starting audit...${RESET}"             # Confirm the folder exists and we are starting
+echo ""  # Print an empty line before the first section
 
 # ============================================================
 # STEP 2 - Read and display all .sh files with their line count
