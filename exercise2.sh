@@ -335,6 +335,9 @@ echo -e "  ${BOLD}Commits outside (penalized):          ${YELLOW}${LATE_COMMITS}
 echo -e "  ${BOLD}Commits before ${PENALTY_CUTOFF} (ignored):  ${CYAN}${SKIPPED_COMMITS}${RESET}"      # Commits ignored from penalty
 echo ""  # Empty line before the next section
 
+
+
+
 # ============================================================
 # STEP 5 - Calculate a score out of 100 with penalties
 # - Start at 100
@@ -343,88 +346,100 @@ echo ""  # Empty line before the next section
 # Since bash only does integers, we work in cents (multiply by 100)
 # and convert back at the end for display
 # ============================================================
-echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"
-echo -e "${BOLD}  SECTION 5: FINAL SCORE (out of 100)            ${RESET}"
-echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"
-echo ""
 
-TOTAL_EXPECTED=${#EXPECTED_SCRIPTS[@]}
+echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"  # Print top border of section
+echo -e "${BOLD}  SECTION 5: FINAL SCORE (out of 100)            ${RESET}"          # Print section title
+echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"  # Print bottom border of section
+echo ""  # Empty line for spacing
 
-# Start at 10000 cents = 100.00 points
+TOTAL_EXPECTED=${#EXPECTED_SCRIPTS[@]}  # Get the total number of scripts we expected to find
+                                        # ${#array[@]} returns the length of the array
+
+# Start at 10000 cents which represents 100.00 points
+# We use cents (integers) because bash cannot handle decimal numbers natively
 SCORE_CENTS=10000
 
 # --- Penalty for missing scripts: 0.25 per file = 25 cents each ---
+# Multiply the number of missing files by 25 to get total penalty in cents
 MISSING_PENALTY_CENTS=$(( MISSING_COUNT * 25 ))
 
 # --- Penalty for commits outside class: 0.15 per commit = 15 cents each ---
+# Multiply the number of late commits by 15 to get total penalty in cents
 LATE_PENALTY_CENTS=$(( LATE_COMMITS * 15 ))
 
 # --- Penalty for missing shebang: 0.25 per file = 25 cents each ---
+# Multiply the number of files without shebang by 25 to get total penalty in cents
 SHEBANG_PENALTY_CENTS=$(( NO_SHEBANG_COUNT * 25 ))
 
-# --- Apply all penalties ---
+# --- Apply all three penalties by subtracting them from the starting score ---
 SCORE_CENTS=$(( SCORE_CENTS - MISSING_PENALTY_CENTS - LATE_PENALTY_CENTS - SHEBANG_PENALTY_CENTS ))
 
-# --- Make sure score does not go below 0 ---
+# --- Make sure the score never goes below zero ---
+# Even with many penalties the minimum score shown will be 0.00
 if [ "$SCORE_CENTS" -lt 0 ]; then
-    SCORE_CENTS=0
+    SCORE_CENTS=0  # Cap the score at zero
 fi
 
-# --- Convert cents to display format (e.g. 9750 → 97.50) ---
+# --- Convert cents back to a decimal display format ---
+# Division gives the whole number part (e.g. 9750 / 100 = 97)
 SCORE_INT=$(( SCORE_CENTS / 100 ))
+# Modulo gives the remainder which is the decimal part (e.g. 9750 % 100 = 50)
 SCORE_DEC=$(( SCORE_CENTS % 100 ))
-
-# Pad decimal to always show two digits (e.g. 5 → 05)
+# printf formats the number with always two decimal digits (e.g. 97 and 5 → "97.05")
 SCORE_DISPLAY=$(printf "%d.%02d" "$SCORE_INT" "$SCORE_DEC")
 
-# --- Show penalty breakdown ---
+# --- Convert each penalty to display format the same way ---
+# Missing files penalty display
 MISSING_DISPLAY=$(printf "%d.%02d" $(( MISSING_PENALTY_CENTS / 100 )) $(( MISSING_PENALTY_CENTS % 100 )))
+# Late commits penalty display
 LATE_DISPLAY=$(printf "%d.%02d" $(( LATE_PENALTY_CENTS / 100 )) $(( LATE_PENALTY_CENTS % 100 )))
-
+# Missing shebang penalty display
 SHEBANG_DISPLAY=$(printf "%d.%02d" $(( SHEBANG_PENALTY_CENTS / 100 )) $(( SHEBANG_PENALTY_CENTS % 100 )))
 
-echo -e "  Starting score:                   ${CYAN}100.00${RESET}"
-echo -e "  Scripts missing:    ${RED}-${MISSING_DISPLAY}${RESET}  (${MISSING_COUNT} × 0.25)"
-echo -e "  No shebang:         ${RED}-${SHEBANG_DISPLAY}${RESET}  (${NO_SHEBANG_COUNT} × 0.25)"
-echo -e "  Commits outside:    ${RED}-${LATE_DISPLAY}${RESET}  (${LATE_COMMITS} × 0.15)"
-echo ""
+# --- Print the full penalty breakdown so the student can see exactly what was deducted ---
+echo -e "  Starting score:                   ${CYAN}100.00${RESET}"                              # Always starts at 100
+echo -e "  Scripts missing:    ${RED}-${MISSING_DISPLAY}${RESET}  (${MISSING_COUNT} × 0.25)"    # Show missing files deduction
+echo -e "  No shebang:         ${RED}-${SHEBANG_DISPLAY}${RESET}  (${NO_SHEBANG_COUNT} × 0.25)" # Show shebang deduction
+echo -e "  Commits outside:    ${RED}-${LATE_DISPLAY}${RESET}  (${LATE_COMMITS} × 0.15)"        # Show late commits deduction
+echo ""  # Empty line before the final score box
 
-# --- Pick color based on final score ---
+# --- Pick the color of the score based on how high it is ---
 if [ "$SCORE_CENTS" -ge 9000 ]; then
-    SCORE_COLOR="${GREEN}"
+    SCORE_COLOR="${GREEN}"   # 90 or above — green
 elif [ "$SCORE_CENTS" -ge 7000 ]; then
-    SCORE_COLOR="${YELLOW}"
+    SCORE_COLOR="${YELLOW}"  # 70 to 89 — yellow
 else
-    SCORE_COLOR="${RED}"
+    SCORE_COLOR="${RED}"     # Below 70 — red
 fi
 
-echo -e "  ${BOLD}╔══════════════════════════════════╗${RESET}"
-echo -e "  ${BOLD}║  FINAL SCORE:  ${SCORE_COLOR}${SCORE_DISPLAY} / 100${RESET}${BOLD}       ║${RESET}"
-echo -e "  ${BOLD}╚══════════════════════════════════╝${RESET}"
-echo ""
+# --- Print the final score inside a box ---
+echo -e "  ${BOLD}╔══════════════════════════════════╗${RESET}"                                        # Top of the box
+echo -e "  ${BOLD}║  FINAL SCORE:  ${SCORE_COLOR}${SCORE_DISPLAY} / 100${RESET}${BOLD}       ║${RESET}" # Score in the middle
+echo -e "  ${BOLD}╚══════════════════════════════════╝${RESET}"                                        # Bottom of the box
+echo ""  # Empty line after the box
 
-# --- Feedback message ---
+# --- Print a feedback message depending on the final score ---
 if [ "$SCORE_CENTS" -ge 9000 ]; then
-    echo -e "  ${GREEN}Excellent work! Everything looks great.${RESET}"
+    echo -e "  ${GREEN}Excellent work! Everything looks great.${RESET}"              # 90 and above
 elif [ "$SCORE_CENTS" -ge 7000 ]; then
-    echo -e "  ${GREEN}Good job! Just a few things to improve.${RESET}"
+    echo -e "  ${GREEN}Good job! Just a few things to improve.${RESET}"              # 70 to 89
 elif [ "$SCORE_CENTS" -ge 5000 ]; then
-    echo -e "  ${YELLOW}Decent effort, but penalties brought the score down.${RESET}"
+    echo -e "  ${YELLOW}Decent effort, but penalties brought the score down.${RESET}" # 50 to 69
 else
-    echo -e "  ${RED}Needs more work. Check missing files and commit times.${RESET}"
+    echo -e "  ${RED}Needs more work. Check missing files and commit times.${RESET}" # Below 50
 fi
 
-# --- List missing files if any ---
+# --- If there are missing files, list them so the student knows what to add ---
 if [ "${#MISSING_FILES[@]}" -gt 0 ]; then
-    echo ""
-    echo -e "  ${YELLOW}Missing scripts to add:${RESET}"
+    echo ""  # Empty line before the list
+    echo -e "  ${YELLOW}Missing scripts to add:${RESET}"  # Header for the missing files list
     for mf in "${MISSING_FILES[@]}"; do
-        echo -e "    ${RED}→ ${mf}${RESET}"
+        echo -e "    ${RED}→ ${mf}${RESET}"  # Print each missing file name with an arrow
     done
 fi
 
-echo ""
-echo -e "${BOLD}${BLUE}=================================================${RESET}"
-echo -e "${CYAN}Audit complete.${RESET}"
-echo -e "${BOLD}${BLUE}=================================================${RESET}"
-echo ""
+echo ""  # Empty line before the closing border
+echo -e "${BOLD}${BLUE}=================================================${RESET}"  # Top border of closing message
+echo -e "${CYAN}Audit complete.${RESET}"                                            # Closing message
+echo -e "${BOLD}${BLUE}=================================================${RESET}"  # Bottom border of closing message
+echo ""  # Final empty line
