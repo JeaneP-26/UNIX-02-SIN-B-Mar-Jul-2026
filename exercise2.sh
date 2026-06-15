@@ -146,33 +146,40 @@ echo -e "  ${BOLD}Total .sh files found: ${CYAN}${FOUND_FILES}${RESET}"        #
 echo -e "  ${BOLD}Total lines across all files: ${CYAN}${TOTAL_LINES}${RESET}" # Print total lines across all files
 echo ""  # Empty line before the next section
 
+
+
 # ============================================================
 # STEP 3 - Check which expected scripts are present or missing
 # ============================================================
-echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"
-echo -e "${BOLD}  SECTION 2: EXPECTED FILES - PRESENT OR MISSING  ${RESET}"
-echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"
-echo ""
 
-PRESENT_COUNT=0
-MISSING_COUNT=0
-MISSING_FILES=()
+echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"  # Print top border of section
+echo -e "${BOLD}  SECTION 2: EXPECTED FILES - PRESENT OR MISSING  ${RESET}"          # Print section title
+echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"  # Print bottom border of section
+echo ""  # Empty line for spacing
 
+PRESENT_COUNT=0   # Counter for scripts that were found in the repo
+MISSING_COUNT=0   # Counter for scripts that were not found in the repo
+MISSING_FILES=()  # Empty array that will store the names of missing files
+
+# Loop through every script name in the EXPECTED_SCRIPTS array
 for script in "${EXPECTED_SCRIPTS[@]}"; do
+    # find searches for the script by name inside the repo folder
+    # grep -q . returns true if find found at least one result
+    # -q means quiet — it does not print anything, just checks if something was found
     if find "$CLONE_DIR" -name "$script" -not -path "*/.git/*" | grep -q .; then
-        echo -e "  ${GREEN}[OK]${RESET}      $script"
-        PRESENT_COUNT=$((PRESENT_COUNT + 1))
+        echo -e "  ${GREEN}[OK]${RESET}      $script"       # Script was found — print OK in green
+        PRESENT_COUNT=$((PRESENT_COUNT + 1))                # Increase the present counter by 1
     else
-        echo -e "  ${RED}[MISSING]${RESET} $script"
-        MISSING_COUNT=$((MISSING_COUNT + 1))
-        MISSING_FILES+=("$script")
+        echo -e "  ${RED}[MISSING]${RESET} $script"         # Script was not found — print MISSING in red
+        MISSING_COUNT=$((MISSING_COUNT + 1))                # Increase the missing counter by 1
+        MISSING_FILES+=("$script")                          # Add the missing script name to the array
     fi
 done
 
-echo ""
-echo -e "  ${BOLD}Scripts present:  ${GREEN}${PRESENT_COUNT} / ${#EXPECTED_SCRIPTS[@]}${RESET}"
-echo -e "  ${BOLD}Scripts missing:  ${RED}${MISSING_COUNT}${RESET}"
-echo ""
+echo ""  # Empty line after the file list
+echo -e "  ${BOLD}Scripts present:  ${GREEN}${PRESENT_COUNT} / ${#EXPECTED_SCRIPTS[@]}${RESET}"  # Show how many scripts were found out of total expected
+echo -e "  ${BOLD}Scripts missing:  ${RED}${MISSING_COUNT}${RESET}"                              # Show how many scripts are missing
+echo ""  # Empty line before the next section
 
 # ============================================================
 # STEP 3b - Check that every .sh file has #!/bin/bash at line 1
