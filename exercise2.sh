@@ -181,35 +181,45 @@ echo -e "  ${BOLD}Scripts present:  ${GREEN}${PRESENT_COUNT} / ${#EXPECTED_SCRIP
 echo -e "  ${BOLD}Scripts missing:  ${RED}${MISSING_COUNT}${RESET}"                              # Show how many scripts are missing
 echo ""  # Empty line before the next section
 
+
+
 # ============================================================
 # STEP 3b - Check that every .sh file has #!/bin/bash at line 1
 # ============================================================
-echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"
-echo -e "${BOLD}  SECTION 3: SHEBANG CHECK (#!/bin/bash)          ${RESET}"
-echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"
-echo ""
 
-NO_SHEBANG_COUNT=0
-NO_SHEBANG_FILES=()
+echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"  # Print top border of section
+echo -e "${BOLD}  SECTION 3: SHEBANG CHECK (#!/bin/bash)          ${RESET}"          # Print section title
+echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"  # Print bottom border of section
+echo ""  # Empty line for spacing
 
+NO_SHEBANG_COUNT=0   # Counter for scripts that are missing the shebang line
+NO_SHEBANG_FILES=()  # Empty array that will store the names of files without shebang
+
+# Loop through every .sh file in the repo, same as section 1
+# find looks for all .sh files excluding the .git folder
+# -print0 and -d '' handle filenames safely using null as separator
 while IFS= read -r -d '' filepath; do
-    filename=$(basename "$filepath")
-    # Read only the very first line of the file
-    first_line=$(head -n 1 "$filepath")
+    filename=$(basename "$filepath")       # Extract just the file name from the full path
+    first_line=$(head -n 1 "$filepath")   # Read only the very first line of the file
+                                          # head -n 1 stops after reading line number 1
 
-    if [ "$first_line" = "#!/bin/bash" ]; then 
-        echo -e "  ${GREEN}[OK]${RESET}      $filename  →  has #!/bin/bash"
+    # Compare the first line to the expected shebang
+    # tr -d '[:space:]' removes any extra spaces or tabs before comparing
+    # This prevents false negatives when a file has a trailing space after #!/bin/bash
+    if [ "$(echo "$first_line" | tr -d '[:space:]')" = "#!/bin/bash" ]; then
+        echo -e "  ${GREEN}[OK]${RESET}      $filename  →  has #!/bin/bash"          # File has the correct shebang
     else
-        echo -e "  ${RED}[NO SHEBANG]${RESET} $filename  →  first line is: '$first_line'"
-        NO_SHEBANG_COUNT=$((NO_SHEBANG_COUNT + 1))
-        NO_SHEBANG_FILES+=("$filename")
+        echo -e "  ${RED}[NO SHEBANG]${RESET} $filename  →  first line is: '$first_line'"  # Show what the first line actually is
+        NO_SHEBANG_COUNT=$((NO_SHEBANG_COUNT + 1))   # Increase the missing shebang counter by 1
+        NO_SHEBANG_FILES+=("$filename")               # Add this file name to the array of offenders
     fi
 done < <(find "$CLONE_DIR" -name "*.sh" -not -path "*/.git/*" -print0 | sort -z)
+# < <(...) feeds the output of find+sort into the while loop using process substitution
 
-echo ""
-echo -e "  ${BOLD}Scripts with correct shebang:  ${GREEN}$(( FOUND_FILES - NO_SHEBANG_COUNT )) / ${FOUND_FILES}${RESET}"
-echo -e "  ${BOLD}Scripts missing shebang:       ${RED}${NO_SHEBANG_COUNT}${RESET}"
-echo ""
+echo ""  # Empty line after the file list
+echo -e "  ${BOLD}Scripts with correct shebang:  ${GREEN}$(( FOUND_FILES - NO_SHEBANG_COUNT )) / ${FOUND_FILES}${RESET}"  # Show how many passed
+echo -e "  ${BOLD}Scripts missing shebang:       ${RED}${NO_SHEBANG_COUNT}${RESET}"  # Show how many failed
+echo ""  # Empty line before the next section
 
 # ============================================================
 # STEP 4 - Check if commits were made during class hours
