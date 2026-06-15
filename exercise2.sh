@@ -112,30 +112,39 @@ echo -e "${CYAN}Auditing local folder: ${BOLD}${CLONE_DIR}${RESET}"  # Tell the 
 echo -e "${GREEN}Folder found. Starting audit...${RESET}"             # Confirm the folder exists and we are starting
 echo ""  # Print an empty line before the first section
 
+
+
 # ============================================================
 # STEP 2 - Read and display all .sh files with their line count
 # ============================================================
-echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"
-echo -e "${BOLD}  SECTION 1: ALL .sh FILES AND THEIR LINE COUNT  ${RESET}"
-echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"
-echo ""
 
-TOTAL_LINES=0
-FOUND_FILES=0
+echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"  # Print top border of section
+echo -e "${BOLD}  SECTION 1: ALL .sh FILES AND THEIR LINE COUNT  ${RESET}"          # Print section title
+echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"  # Print bottom border of section
+echo ""  # Empty line for spacing
 
-# Go through every .sh file found in the repo
+TOTAL_LINES=0   # Counter that will add up lines from every file found
+FOUND_FILES=0   # Counter that will add up how many .sh files were found
+
+# Loop through every .sh file found in the repo folder
+# find searches inside CLONE_DIR for files ending in .sh
+# -not -path "*/.git/*" skips the hidden .git folder which is not student work
+# -print0 separates file names with a null character instead of newlines — safer for filenames with spaces
+# sort -z sorts the files alphabetically using the same null separator
+# IFS= and -d '' tell read to use null as the delimiter, matching -print0
 while IFS= read -r -d '' filepath; do
-    filename=$(basename "$filepath")
-    lines=$(wc -l < "$filepath")
-    TOTAL_LINES=$((TOTAL_LINES + lines))
-    FOUND_FILES=$((FOUND_FILES + 1))
-    echo -e "  ${GREEN}[FOUND]${RESET} ${filename}  →  ${YELLOW}${lines} lines${RESET}"
+    filename=$(basename "$filepath")          # Extract just the file name from the full path
+    lines=$(wc -l < "$filepath")             # Count how many lines the file has
+    TOTAL_LINES=$((TOTAL_LINES + lines))     # Add this file's lines to the running total
+    FOUND_FILES=$((FOUND_FILES + 1))         # Increase the file counter by 1
+    echo -e "  ${GREEN}[FOUND]${RESET} ${filename}  →  ${YELLOW}${lines} lines${RESET}"  # Print the file name and its line count
 done < <(find "$CLONE_DIR" -name "*.sh" -not -path "*/.git/*" -print0 | sort -z)
+# < <(...) is process substitution — it feeds the output of find+sort into the while loop
 
-echo ""
-echo -e "  ${BOLD}Total .sh files found: ${CYAN}${FOUND_FILES}${RESET}"
-echo -e "  ${BOLD}Total lines across all files: ${CYAN}${TOTAL_LINES}${RESET}"
-echo ""
+echo ""  # Empty line after the file list
+echo -e "  ${BOLD}Total .sh files found: ${CYAN}${FOUND_FILES}${RESET}"        # Print total number of files found
+echo -e "  ${BOLD}Total lines across all files: ${CYAN}${TOTAL_LINES}${RESET}" # Print total lines across all files
+echo ""  # Empty line before the next section
 
 # ============================================================
 # STEP 3 - Check which expected scripts are present or missing
@@ -181,7 +190,7 @@ while IFS= read -r -d '' filepath; do
     # Read only the very first line of the file
     first_line=$(head -n 1 "$filepath")
 
-    if [ "$first_line" = "#!/bin/bash" ]; then
+    if [ "$first_line" = "#!/bin/bash" ]; then 
         echo -e "  ${GREEN}[OK]${RESET}      $filename  →  has #!/bin/bash"
     else
         echo -e "  ${RED}[NO SHEBANG]${RESET} $filename  →  first line is: '$first_line'"
