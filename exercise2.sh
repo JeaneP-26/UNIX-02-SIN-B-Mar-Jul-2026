@@ -221,97 +221,119 @@ echo -e "  ${BOLD}Scripts with correct shebang:  ${GREEN}$(( FOUND_FILES - NO_SH
 echo -e "  ${BOLD}Scripts missing shebang:       ${RED}${NO_SHEBANG_COUNT}${RESET}"  # Show how many failed
 echo ""  # Empty line before the next section
 
+
+
 # ============================================================
 # STEP 4 - Check if commits were made during class hours
 # ============================================================
-echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"
-echo -e "${BOLD}  SECTION 4: COMMIT SCHEDULE CHECK                ${RESET}"
-echo -e "${BOLD}  (Mon & Wed, 7-9 AM Ecuador = 12-14 UTC)        ${RESET}"
-echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"
-echo ""
 
-TOTAL_COMMITS=0
-ON_TIME_COMMITS=0
-LATE_COMMITS=0
-SKIPPED_COMMITS=0
+echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"  # Print top border of section
+echo -e "${BOLD}  SECTION 4: COMMIT SCHEDULE CHECK                ${RESET}"          # Print section title
+echo -e "${BOLD}  (Mon & Wed, 7-9 AM Ecuador = 12-14 UTC)        ${RESET}"          # Reminder of the class schedule
+echo -e "${BOLD}${CYAN}--------------------------------------------------${RESET}"  # Print bottom border of section
+echo ""  # Empty line for spacing
+
+TOTAL_COMMITS=0    # Counter for all commits found in the branch
+ON_TIME_COMMITS=0  # Counter for commits made during class hours
+LATE_COMMITS=0     # Counter for commits made outside class hours after the cutoff date
+SKIPPED_COMMITS=0  # Counter for commits outside class hours but before the cutoff date
 
 # Only commits ON or AFTER this date are penalized for being outside class hours
-# Format: YYYY-MM-DD
+# Commits before this date are shown but ignored in the score calculation
+# Format must be YYYY-MM-DD so string comparison works correctly
 PENALTY_CUTOFF="2026-06-01"
 
-# Read all commits from the branch
-# git log --format="%H|%ci|%s" gives us: hash | date in ISO format | message
-# Example date: 2026-06-15 13:14:39 +0000
+# Read all commits from the branch using git log
+# --format="%H|%ci|%s" returns: full hash | ISO date with timezone | commit message
+# Example output: abc1234...|2026-06-15 13:14:39 +0000|feat: add script
+# The pipe | is used as a separator between fields so we can split them with IFS
 while IFS='|' read -r commit_hash commit_date commit_msg; do
-    TOTAL_COMMITS=$((TOTAL_COMMITS + 1))
+    TOTAL_COMMITS=$((TOTAL_COMMITS + 1))  # Increase total commit counter by 1
 
-    # Extract the hour directly from the date string (position 11-12 in "YYYY-MM-DD HH:MM:SS +0000")
-    # This avoids any issues with 'date -d' interpreting timezones differently
+    # Extract the hour from the UTC date string
+    # awk '{print $2}' gets the time part (e.g. "13:14:39")
+    # cut -d':' -f1 gets just the hour (e.g. "13")
     utc_hour=$(echo "$commit_date" | awk '{print $2}' | cut -d':' -f1)
-    utc_hour=$((10#$utc_hour))   # Force base-10 so 08 or 09 don't cause errors
+    utc_hour=$((10#$utc_hour))  # Force base-10 conversion so hours like 08 or 09 don't cause errors
 
-    # Convert UTC hour to Ecuador time (UTC-5)
+    # Convert UTC hour to Ecuador local time by subtracting 5 hours (Ecuador is UTC-5)
     ecuador_hour=$((utc_hour - 5))
-    # Handle midnight rollover (if result is negative, add 24)
+
+    # If the result is negative it means we crossed midnight going backwards
+    # For example: 3 AM UTC - 5 = -2, which should be 22 (10 PM) the day before
     if [ "$ecuador_hour" -lt 0 ]; then
-        ecuador_hour=$((ecuador_hour + 24))
+        ecuador_hour=$((ecuador_hour + 24))  # Add 24 to wrap around to the previous day
     fi
 
-    # Extract the date portion and get the day of the week in Ecuador time
-    # If the UTC hour is < 5, the Ecuador date is actually the day before
+    # Extract just the date part from the commit timestamp (e.g. "2026-06-15")
     utc_date=$(echo "$commit_date" | awk '{print $1}')
+
+    # If the UTC hour was before 5 AM, the Ecuador date is actually the previous day
+    # because subtracting 5 hours crossed midnight
     if [ "$utc_hour" -lt 5 ]; then
-        # Subtract one day for Ecuador
-        ecuador_date=$(date -d "$utc_date - 1 day" +"%Y-%m-%d" 2>/dev/null)
+        ecuador_date=$(date -d "$utc_date - 1 day" +"%Y-%m-%d" 2>/dev/null)  # Subtract one day
     else
-        ecuador_date="$utc_date"
+        ecuador_date="$utc_date"  # Date is the same in Ecuador as in UTC
     fi
+
+    # Get the day of the week as a number using the Ecuador date
+    # date +%u returns: 1=Monday, 2=Tuesday, 3=Wednesday ... 7=Sunday
     day_num=$(date -d "$ecuador_date" +"%u" 2>/dev/null)
 
-    # Build a readable Ecuador timestamp to show the user
+    # Build a readable timestamp string to display in the output
+    # printf "%02d" pads the hour with a leading zero if needed (e.g. 7 → 07)
     ecuador_time=$(printf "%02d:%s" "$ecuador_hour" "$(echo "$commit_date" | awk '{print $2}' | cut -d':' -f2-)")
-    display_date="${ecuador_date} ${ecuador_time} (Ecuador)"
+    display_date="${ecuador_date} ${ecuador_time} (Ecuador)"  # Full readable date in Ecuador time
 
-    # Check if it was Monday(1) or Wednesday(3)
-    day_ok=false
-    for d in $CLASS_DAYS; do
+    # Check if the commit day matches one of the class days (Monday=1 or Wednesday=3)
+    day_ok=false                      # Assume the day is not a class day
+    for d in $CLASS_DAYS; do          # Loop through the class days list
         if [ "$day_num" = "$d" ]; then
-            day_ok=true
+            day_ok=true               # Day matches — mark it as a class day
         fi
     done
 
-    # Check if it was between 7:00 AM and 9:00 AM Ecuador time
-    time_ok=false
+    # Check if the commit hour falls within class time (7 AM to 9 AM Ecuador)
+    # -ge means greater than or equal to, -lt means less than
+    time_ok=false  # Assume the time is outside class hours
     if [ "$ecuador_hour" -ge "$CLASS_START" ] && [ "$ecuador_hour" -lt "$CLASS_END" ]; then
-        time_ok=true
+        time_ok=true  # Hour is within class time — mark it as OK
     fi
 
-    short_msg="${commit_msg:0:45}"
-    short_hash="${commit_hash:0:7}"
+    short_msg="${commit_msg:0:45}"   # Trim the commit message to 45 characters for cleaner display
+    short_hash="${commit_hash:0:7}"  # Trim the commit hash to 7 characters (standard short format)
 
+    # Decide how to label this commit based on day and time checks
     if $day_ok && $time_ok; then
+        # Both day and time are correct — commit was made during class
         echo -e "  ${GREEN}[IN CLASS]${RESET}  ${short_hash} | ${display_date} | ${short_msg}"
-        ON_TIME_COMMITS=$((ON_TIME_COMMITS + 1))
+        ON_TIME_COMMITS=$((ON_TIME_COMMITS + 1))  # Increase the in-class counter by 1
     else
-        # Check if this commit is before the penalty cutoff date
-        # We compare date strings directly — works because format is YYYY-MM-DD
+        # Commit was outside class hours — check if it should be penalized
+        # String comparison works here because dates are in YYYY-MM-DD format
+        # which sorts correctly as text (earlier dates are alphabetically smaller)
         if [[ "$ecuador_date" < "$PENALTY_CUTOFF" ]]; then
+            # Commit is before the cutoff date — show it but do not penalize
             echo -e "  ${CYAN}[BEFORE ${PENALTY_CUTOFF}]${RESET}  ${short_hash} | ${display_date} | ${short_msg}"
-            SKIPPED_COMMITS=$((SKIPPED_COMMITS + 1))
+            SKIPPED_COMMITS=$((SKIPPED_COMMITS + 1))  # Increase the skipped counter by 1
         else
+            # Commit is after the cutoff date and outside class — penalize it
             echo -e "  ${YELLOW}[OUTSIDE] ${RESET}  ${short_hash} | ${display_date} | ${short_msg}"
-            LATE_COMMITS=$((LATE_COMMITS + 1))
+            LATE_COMMITS=$((LATE_COMMITS + 1))  # Increase the late counter by 1
         fi
     fi
 
 done < <(git -C "$CLONE_DIR" --no-pager log "$BRANCH" --format="%H|%ci|%s" 2>/dev/null)
+# git -C "$CLONE_DIR" runs git inside the repo folder without needing to cd into it
+# --no-pager prevents git from pausing the output waiting for the user to press Enter
+# 2>/dev/null suppresses any git error messages so they don't mix with the output
 
-echo ""
-echo -e "  ${BOLD}Total commits in branch:              ${CYAN}${TOTAL_COMMITS}${RESET}"
-echo -e "  ${BOLD}Commits during class:                 ${GREEN}${ON_TIME_COMMITS}${RESET}"
-echo -e "  ${BOLD}Commits outside (penalized):          ${YELLOW}${LATE_COMMITS}${RESET}"
-echo -e "  ${BOLD}Commits before ${PENALTY_CUTOFF} (ignored):  ${CYAN}${SKIPPED_COMMITS}${RESET}"
-echo ""
+echo ""  # Empty line after the commit list
+echo -e "  ${BOLD}Total commits in branch:              ${CYAN}${TOTAL_COMMITS}${RESET}"               # Total commits found
+echo -e "  ${BOLD}Commits during class:                 ${GREEN}${ON_TIME_COMMITS}${RESET}"            # Commits made in class
+echo -e "  ${BOLD}Commits outside (penalized):          ${YELLOW}${LATE_COMMITS}${RESET}"              # Commits that will lose points
+echo -e "  ${BOLD}Commits before ${PENALTY_CUTOFF} (ignored):  ${CYAN}${SKIPPED_COMMITS}${RESET}"      # Commits ignored from penalty
+echo ""  # Empty line before the next section
 
 # ============================================================
 # STEP 5 - Calculate a score out of 100 with penalties
