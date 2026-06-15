@@ -1,4 +1,5 @@
 #!/bin/bash
+# This line tells the system to run this script using bash
 
 # ============================================================
 # exercise2.sh
@@ -8,59 +9,65 @@
 # ============================================================
 
 # --- Colors to make the output easier to read ---
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-BOLD='\033[1m'
-RESET='\033[0m'
+# Each variable stores an ANSI escape code that changes the terminal text color
+# These codes work on most Linux terminals including GitHub Codespaces
+RED='\033[0;31m'      # Red — used for errors and missing files
+GREEN='\033[0;32m'    # Green — used for things that passed correctly
+YELLOW='\033[1;33m'   # Yellow — used for warnings and outside-class commits
+BLUE='\033[0;34m'     # Blue — used for section headers
+CYAN='\033[0;36m'     # Cyan — used for informational values
+BOLD='\033[1m'        # Bold — makes text thicker and more visible
+RESET='\033[0m'       # Reset — goes back to the default terminal color
 
 # --- Repository settings ---
 # The script receives the path to a locally cloned repo as the first argument
 # Usage: bash exercise2.sh <path_to_repo_folder>
 # Example: bash exercise2.sh repo_luis
-BRANCH="blackhatbash"
+BRANCH="blackhatbash"   # Name of the branch we want to audit
 
 # --- Class schedule: Monday and Wednesday, 7:00 AM to 9:00 AM Ecuador time ---
-# Commits from GitHub come in UTC (+0000). We convert manually to Ecuador (UTC-5) inside the loop.
-CLASS_DAYS="1 3"        # 1 = Monday, 3 = Wednesday (numbers from 'date +%u')
-CLASS_START=7           # 7 AM Ecuador time
-CLASS_END=9             # 9 AM Ecuador time
+# GitHub stores commit timestamps in UTC (Coordinated Universal Time)
+# Ecuador is UTC-5, so we subtract 5 hours inside the loop to get local time
+CLASS_DAYS="1 3"   # Days when class happens: 1 = Monday, 3 = Wednesday
+                   # These numbers come from the 'date +%u' command (1=Mon ... 7=Sun)
+CLASS_START=7      # Class starts at 7:00 AM Ecuador time
+CLASS_END=9        # Class ends at 9:00 AM Ecuador time
 
 # --- List of all .sh scripts that should be in the repo ---
+# This is a bash array — each item is a script name the student must have submitted
+# The audit will check every name in this list and mark it as present or missing
 EXPECTED_SCRIPTS=(
-    "array.sh"
-    "background.sh"
-    "blackhatbash1.sh"
-    "blackhatbash2.sh"
-    "blackhatbash3.sh"
-    "blackhatbash4.sh"
-    "blackhatbash5.sh"
-    "blackhatbash6.sh"
-    "blackhatbash7.sh"
-    "break.sh"
-    "case.sh"
-    "check_root_function.sh"
-    "exercise1.sh"
-    "exit_codes.sh"
-    "for_files.sh"
-    "for_ip.sh"
-    "for_ls.sh"
-    "for.sh"
-    "function.sh"
-    "if_elif.sh"
-    "input_prompting.sh"
-    "integer_comparison.sh"
-    "linking_conditions.sh"
-    "local_scope_variable.sh"
-    "ping_with_arguments.sh"
-    "print_args.sh"
-    "string_comparison.sh"
-    "test_if_file_exists.sh"
-    "until_loop.sh"
-    "while_loop.sh"
-    "while.sh"
+    "array.sh"               # Script practicing arrays in bash
+    "background.sh"          # Script practicing background processes with &
+    "blackhatbash1.sh"       # Exercise from Black Hat Bash chapter 1
+    "blackhatbash2.sh"       # Exercise from Black Hat Bash chapter 2
+    "blackhatbash3.sh"       # Exercise from Black Hat Bash chapter 3
+    "blackhatbash4.sh"       # Exercise from Black Hat Bash chapter 4
+    "blackhatbash5.sh"       # Exercise from Black Hat Bash chapter 5
+    "blackhatbash6.sh"       # Exercise from Black Hat Bash chapter 6
+    "blackhatbash7.sh"       # Exercise from Black Hat Bash chapter 7
+    "break.sh"               # Script practicing the break statement in loops
+    "case.sh"                # Script practicing case/esac conditional blocks
+    "check_root_function.sh" # Script with a function that checks for root user
+    "exercise1.sh"           # First exercise script of the course
+    "exit_codes.sh"          # Script practicing exit codes ($?)
+    "for_files.sh"           # Script using a for loop to iterate over files
+    "for_ip.sh"              # Script using a for loop to iterate over IP addresses
+    "for_ls.sh"              # Script using a for loop with ls output
+    "for.sh"                 # Basic for loop script
+    "function.sh"            # Script practicing bash functions
+    "if_elif.sh"             # Script practicing if/elif/else conditionals
+    "input_prompting.sh"     # Script that reads user input with read
+    "integer_comparison.sh"  # Script comparing numbers with -eq -lt -gt etc
+    "linking_conditions.sh"  # Script using && and || to link conditions
+    "local_scope_variable.sh"  # Script showing local variables inside functions
+    "ping_with_arguments.sh"   # Script that runs ping using command-line arguments
+    "print_args.sh"            # Script that prints all arguments passed to it
+    "string_comparison.sh"     # Script comparing strings with = and !=
+    "test_if_file_exists.sh"   # Script checking if a file exists with -f or -e
+    "until_loop.sh"            # Script practicing the until loop
+    "while_loop.sh"            # Script practicing the while loop
+    "while.sh"                 # Another while loop variation script
 )
 
 # ============================================================
