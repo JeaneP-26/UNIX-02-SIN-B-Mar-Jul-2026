@@ -38,3 +38,6 @@ sed 's/Mozilla/Godzilla/g' log.txt > newlog.txt
 sed -i 's/Mozilla/Godzilla/g' log.txt
 # Search for lines containing Godzilla in log.txt to verify the replacement worked
 grep "Godzilla" log.txt
+
+
+sed 's/ //g' log.txt > newlog1.txt
