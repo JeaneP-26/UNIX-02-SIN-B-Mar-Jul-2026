@@ -96,3 +96,4 @@ ps -ef | grep exercise2.sh
 kill -CONT 32869
 # Verify the process is running again
 ps -ef | grep exercise2.sh
+
