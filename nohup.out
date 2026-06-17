@@ -1,0 +1,16 @@
+
+[1m[0;34m=================================================[0m
+[1m[0;34m   REPOSITORY AUDIT - blackhatbash branch        [0m
+[1m[0;34m=================================================[0m
+
+[0;31mERROR: You need to pass the repo folder as an argument.[0m
+[1;33mUsage: bash exercise2.sh <folder>[0m
+[1;33mExample: bash exercise2.sh repo_luis[0m
+
+[1m[0;34m=================================================[0m
+[1m[0;34m   REPOSITORY AUDIT - blackhatbash branch        [0m
+[1m[0;34m=================================================[0m
+
+[0;31mERROR: You need to pass the repo folder as an argument.[0m
+[1;33mUsage: bash exercise2.sh <folder>[0m
+[1;33mExample: bash exercise2.sh repo_luis[0m

@@ -73,3 +73,13 @@ Ctrl+z #To stopped the process
 bg %1
 #Result:
 #[1]+ sleep 100 &
+
+nohup ./exercise2.sh &
+#Result:
+#nohup: se descarta la entrada y se añade la salida a 'nohup.out'
+#nohup: fallo al ejecutar la orden './exercise2.sh': Permiso denegado
+#[1]+  Salida 126                 nohup ./exercise2.sh
+chmod u+x exercise2.sh
+nohup ./exercise2.sh &
+#[1] 26392
+#nohup: se descarta la entrada y se añade la salida a 'nohup.out'
