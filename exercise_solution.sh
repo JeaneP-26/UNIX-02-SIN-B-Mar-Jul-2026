@@ -1,76 +1,43 @@
 #!/bin/bash
-# This line tells the system to run this file using bash
+# my script for exercise 2 - ping a domain and save results to a CSV
 
-#ARGUMENT VALIDATION
-# $# is a special variable that holds the number of arguments the user passed
-# -ne means "not equal", so this checks: did the user NOT give exactly 2 arguments?
+# if the user didn't give exactly 2 arguments, show an error and stop
 if [ $# -ne 2 ]; then
-    # If arguments are missing, show an error message to the user
+    # tell the user what went wrong
     echo "Error: you must provide two arguments: <name> <domain>"
-    # Show an example of how to use the script correctly
-    echo "Example: ./exercise2.sh mysite nostarch.com"
-    # exit 1 means: stop the script and report that something went wrong
-    # (exit 0 = success, exit 1 = error — this is the "right exit code" the exercise asks for)
+    # show an example so they know how to use it
+    echo "Example: ./exercise_solution.sh mysite nostarch.com"
+    # exit 1 = the script stopped because of an error
     exit 1
-# Close the if block
 fi
 
-
-
-
-#SAVE ARGUMENTS INTO VARIABLES
-# $1 is the first argument the user typed (the name, for example: mysite)
+# $1 is the first argument the user typed (the name)
 NAME=$1
-# $2 is the second argument the user typed (the domain, for example: nostarch.com)
+# $2 is the second argument the user typed (the domain)
 DOMAIN=$2
 
+# curl tries to connect to the domain like a browser would
+# -s hides the progress bar
+# --max-time 5 waits max 5 seconds before giving up
+# -o /dev/null throws away the page content, we don't need it
+curl -s --max-time 5 -o /dev/null "http://$DOMAIN"
 
-
-#PING THE DOMAIN
-# ping sends a network packet to the domain to check if it responds
-# -c 1 means: send only 1 packet (instead of pinging forever)
-# > /dev/null sends the normal output to trash (we don't want to print it)
-# 2>&1 also sends error messages to trash
-ping -c 1 "$DOMAIN" > /dev/null 2>&1
-
-
-
-
-#CHECK IF PING WORKED
-# $? holds the exit code of the LAST command that ran (in this case, ping)
-# If ping worked, $? will be 0 (success)
-# If ping failed, $? will be something other than 0 (error)
+# $? is the exit code of curl (0 = connected, anything else = failed)
 if [ $? -eq 0 ]; then
-    # Ping was successful, so we save the word "success" in the RESULT variable
+    # curl connected successfully
     RESULT="success"
-# else means: if the condition above was NOT true
 else
-    # Ping failed, so we save the word "failure" in the RESULT variable
+    # curl couldn't reach the domain
     RESULT="failure"
-# Close the if/else block
 fi
 
-
-
-#GET CURRENT DATE AND TIME
-# date is a command that returns the current date and time
-# "+%Y-%m-%d %H:%M:%S" is the format: Year-Month-Day Hour:Minute:Second
-# $(...) runs the command and saves the result into the DATETIME variable
+# get the current date and time and save it in a variable
 DATETIME=$(date "+%Y-%m-%d %H:%M:%S")
 
-
-
-# WRITE RESULTS TO CSV FILE
-# echo prints text to the screen (or in this case, to a file)
-# The CSV line has 4 columns separated by commas: name, domain, result, date
-# >> means: APPEND to the file (add a new line without deleting old ones)
-# results.csv is the file where all results will be saved
+# write one line to the CSV with all 4 fields separated by commas
+# >> means add to the file without deleting what's already there
 echo "$NAME,$DOMAIN,$RESULT,$DATETIME" >> results.csv
 
-
-
-# SHOW RESULT ON SCREEN 
-# Tell the user what happened with the ping
+# show the result on screen so the user knows what happened
 echo "Done! Result for $DOMAIN: $RESULT"
-# Remind the user where the result was saved
 echo "Saved to results.csv"
