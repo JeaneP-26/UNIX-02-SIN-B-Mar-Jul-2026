@@ -62,3 +62,14 @@ jobs
 #Result:
 #[1]+  Ejecutando                 sleep 100 &
 
+fg %1
+#Result:
+#sleep 100
+
+Ctrl+z #To stopped the process
+#^Z
+#[1]+  Detenido                   sleep 100
+
+bg %1
+#Result:
+#[1]+ sleep 100 &
