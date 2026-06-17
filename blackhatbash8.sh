@@ -74,7 +74,7 @@ bg %1
 #Result:
 #[1]+ sleep 100 &
 
-nohup ./exercise2.sh &
+nohup ./exercise2.sh . &
 #Result:
 #nohup: se descarta la entrada y se añade la salida a 'nohup.out'
 #nohup: fallo al ejecutar la orden './exercise2.sh': Permiso denegado
@@ -83,3 +83,16 @@ chmod u+x exercise2.sh
 nohup ./exercise2.sh &
 #[1] 26392
 #nohup: se descarta la entrada y se añade la salida a 'nohup.out'
+
+
+
+# Run exercise2.sh in the background with nohup passing current folder as argument
+nohup ./exercise2.sh . &
+# Stop the process using its PID
+kill -STOP 32869
+# Verify the process is stopped
+ps -ef | grep exercise2.sh
+# Resume the stopped process
+kill -CONT 32869
+# Verify the process is running again
+ps -ef | grep exercise2.sh

@@ -443,3 +443,8 @@ echo -e "${BOLD}${BLUE}=================================================${RESET}
 echo -e "${CYAN}Audit complete.${RESET}"                                            # Closing message
 echo -e "${BOLD}${BLUE}=================================================${RESET}"  # Bottom border of closing message
 echo ""  # Final empty line
+
+
+
+# Keep the script running for 60 seconds to allow process control testing
+sleep 60

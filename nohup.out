@@ -14,3 +14,356 @@
 [0;31mERROR: You need to pass the repo folder as an argument.[0m
 [1;33mUsage: bash exercise2.sh <folder>[0m
 [1;33mExample: bash exercise2.sh repo_luis[0m
+
+[1m[0;34m=================================================[0m
+[1m[0;34m   REPOSITORY AUDIT - blackhatbash branch        [0m
+[1m[0;34m=================================================[0m
+
+[0;31mERROR: You need to pass the repo folder as an argument.[0m
+[1;33mUsage: bash exercise2.sh <folder>[0m
+[1;33mExample: bash exercise2.sh repo_luis[0m
+
+[1m[0;34m=================================================[0m
+[1m[0;34m   REPOSITORY AUDIT - blackhatbash branch        [0m
+[1m[0;34m=================================================[0m
+
+[0;31mERROR: You need to pass the repo folder as an argument.[0m
+[1;33mUsage: bash exercise2.sh <folder>[0m
+[1;33mExample: bash exercise2.sh repo_luis[0m
+
+[1m[0;34m=================================================[0m
+[1m[0;34m   REPOSITORY AUDIT - blackhatbash branch        [0m
+[1m[0;34m=================================================[0m
+
+[0;31mERROR: You need to pass the repo folder as an argument.[0m
+[1;33mUsage: bash exercise2.sh <folder>[0m
+[1;33mExample: bash exercise2.sh repo_luis[0m
+
+[1m[0;34m=================================================[0m
+[1m[0;34m   REPOSITORY AUDIT - blackhatbash branch        [0m
+[1m[0;34m=================================================[0m
+
+[0;36mAuditing local folder: [1m.[0m
+[0;32mFolder found. Starting audit...[0m
+
+[1m[0;36m--------------------------------------------------[0m
+[1m  SECTION 1: ALL .sh FILES AND THEIR LINE COUNT  [0m
+[1m[0;36m--------------------------------------------------[0m
+
+  [0;32m[FOUND][0m array.sh  →  [1;33m12 lines[0m
+  [0;32m[FOUND][0m background.sh  →  [1;33m11 lines[0m
+  [0;32m[FOUND][0m blackhatbash1.sh  →  [1;33m20 lines[0m
+  [0;32m[FOUND][0m blackhatbash2.sh  →  [1;33m28 lines[0m
+  [0;32m[FOUND][0m blackhatbash3.sh  →  [1;33m23 lines[0m
+  [0;32m[FOUND][0m blackhatbash4.sh  →  [1;33m12 lines[0m
+  [0;32m[FOUND][0m blackhatbash5.sh  →  [1;33m17 lines[0m
+  [0;32m[FOUND][0m blackhatbash6.sh  →  [1;33m16 lines[0m
+  [0;32m[FOUND][0m blackhatbash7.sh  →  [1;33m16 lines[0m
+  [0;32m[FOUND][0m blackhatbash8.sh  →  [1;33m99 lines[0m
+  [0;32m[FOUND][0m break.sh  →  [1;33m5 lines[0m
+  [0;32m[FOUND][0m case.sh  →  [1;33m12 lines[0m
+  [0;32m[FOUND][0m check_root_function.sh  →  [1;33m34 lines[0m
+  [0;32m[FOUND][0m exercise1.sh  →  [1;33m12 lines[0m
+  [0;32m[FOUND][0m exercise2.sh  →  [1;33m449 lines[0m
+  [0;32m[FOUND][0m exit_codes.sh  →  [1;33m10 lines[0m
+  [0;32m[FOUND][0m for_files.sh  →  [1;33m16 lines[0m
+  [0;32m[FOUND][0m for_ip.sh  →  [1;33m4 lines[0m
+  [0;32m[FOUND][0m for_ls.sh  →  [1;33m3 lines[0m
+  [0;32m[FOUND][0m for.sh  →  [1;33m4 lines[0m
+  [0;32m[FOUND][0m function.sh  →  [1;33m6 lines[0m
+  [0;32m[FOUND][0m if_elif.sh  →  [1;33m37 lines[0m
+  [0;32m[FOUND][0m input_prompting.sh  →  [1;33m7 lines[0m
+  [0;32m[FOUND][0m integer_comparison.sh  →  [1;33m8 lines[0m
+  [0;32m[FOUND][0m linking_conditions.sh  →  [1;33m17 lines[0m
+  [0;32m[FOUND][0m local_scope_variable.sh  →  [1;33m13 lines[0m
+  [0;32m[FOUND][0m ping_with_arguments.sh  →  [1;33m22 lines[0m
+  [0;32m[FOUND][0m print_args.sh  →  [1;33m4 lines[0m
+  [0;32m[FOUND][0m array.sh  →  [1;33m18 lines[0m
+  [0;32m[FOUND][0m background.sh  →  [1;33m11 lines[0m
+  [0;32m[FOUND][0m blackhatbash1.sh  →  [1;33m18 lines[0m
+  [0;32m[FOUND][0m blackhatbash2.sh  →  [1;33m19 lines[0m
+  [0;32m[FOUND][0m blackhatbash3.sh  →  [1;33m17 lines[0m
+  [0;32m[FOUND][0m blackhatbash4.sh  →  [1;33m14 lines[0m
+  [0;32m[FOUND][0m blackhatbash5.sh  →  [1;33m17 lines[0m
+  [0;32m[FOUND][0m blackhatbash6.sh  →  [1;33m6 lines[0m
+  [0;32m[FOUND][0m blackhatbash7.sh  →  [1;33m12 lines[0m
+  [0;32m[FOUND][0m break.sh  →  [1;33m6 lines[0m
+  [0;32m[FOUND][0m case.sh  →  [1;33m12 lines[0m
+  [0;32m[FOUND][0m check_root_function.sh  →  [1;33m48 lines[0m
+  [0;32m[FOUND][0m exercise1.sh  →  [1;33m12 lines[0m
+  [0;32m[FOUND][0m exit_codes.sh  →  [1;33m8 lines[0m
+  [0;32m[FOUND][0m for_files.sh  →  [1;33m21 lines[0m
+  [0;32m[FOUND][0m for_ip.sh  →  [1;33m4 lines[0m
+  [0;32m[FOUND][0m for_ls.sh  →  [1;33m4 lines[0m
+  [0;32m[FOUND][0m for.sh  →  [1;33m4 lines[0m
+  [0;32m[FOUND][0m function.sh  →  [1;33m5 lines[0m
+  [0;32m[FOUND][0m if_elif.sh  →  [1;33m39 lines[0m
+  [0;32m[FOUND][0m input_prompting.sh  →  [1;33m9 lines[0m
+  [0;32m[FOUND][0m integer_comparison.sh  →  [1;33m7 lines[0m
+  [0;32m[FOUND][0m linking_conditions.sh  →  [1;33m17 lines[0m
+  [0;32m[FOUND][0m local_scope_variable.sh  →  [1;33m31 lines[0m
+  [0;32m[FOUND][0m ping_with_arguments.sh  →  [1;33m19 lines[0m
+  [0;32m[FOUND][0m print_args.sh  →  [1;33m4 lines[0m
+  [0;32m[FOUND][0m string_comparison.sh  →  [1;33m8 lines[0m
+  [0;32m[FOUND][0m test_if_file_exists.sh  →  [1;33m9 lines[0m
+  [0;32m[FOUND][0m until_loop.sh  →  [1;33m9 lines[0m
+  [0;32m[FOUND][0m while_loop.sh  →  [1;33m21 lines[0m
+  [0;32m[FOUND][0m while.sh  →  [1;33m5 lines[0m
+  [0;32m[FOUND][0m string_comparison.sh  →  [1;33m8 lines[0m
+  [0;32m[FOUND][0m test_if_file_exists.sh  →  [1;33m5 lines[0m
+  [0;32m[FOUND][0m until_loop.sh  →  [1;33m8 lines[0m
+  [0;32m[FOUND][0m while_loop.sh  →  [1;33m16 lines[0m
+  [0;32m[FOUND][0m while.sh  →  [1;33m4 lines[0m
+
+  [1mTotal .sh files found: [0;36m64[0m
+  [1mTotal lines across all files: [0;36m1392[0m
+
+[1m[0;36m--------------------------------------------------[0m
+[1m  SECTION 2: EXPECTED FILES - PRESENT OR MISSING  [0m
+[1m[0;36m--------------------------------------------------[0m
+
+  [0;32m[OK][0m      array.sh
+  [0;32m[OK][0m      background.sh
+  [0;32m[OK][0m      blackhatbash1.sh
+  [0;32m[OK][0m      blackhatbash2.sh
+  [0;32m[OK][0m      blackhatbash3.sh
+  [0;32m[OK][0m      blackhatbash4.sh
+  [0;32m[OK][0m      blackhatbash5.sh
+  [0;32m[OK][0m      blackhatbash6.sh
+  [0;32m[OK][0m      blackhatbash7.sh
+  [0;32m[OK][0m      break.sh
+  [0;32m[OK][0m      case.sh
+  [0;32m[OK][0m      check_root_function.sh
+  [0;32m[OK][0m      exercise1.sh
+  [0;32m[OK][0m      exit_codes.sh
+  [0;32m[OK][0m      for_files.sh
+  [0;32m[OK][0m      for_ip.sh
+  [0;32m[OK][0m      for_ls.sh
+  [0;32m[OK][0m      for.sh
+  [0;32m[OK][0m      function.sh
+  [0;32m[OK][0m      if_elif.sh
+  [0;32m[OK][0m      input_prompting.sh
+  [0;32m[OK][0m      integer_comparison.sh
+  [0;32m[OK][0m      linking_conditions.sh
+  [0;32m[OK][0m      local_scope_variable.sh
+  [0;32m[OK][0m      ping_with_arguments.sh
+  [0;32m[OK][0m      print_args.sh
+  [0;32m[OK][0m      string_comparison.sh
+  [0;32m[OK][0m      test_if_file_exists.sh
+  [0;32m[OK][0m      until_loop.sh
+  [0;32m[OK][0m      while_loop.sh
+  [0;32m[OK][0m      while.sh
+
+  [1mScripts present:  [0;32m31 / 31[0m
+  [1mScripts missing:  [0;31m0[0m
+
+[1m[0;36m--------------------------------------------------[0m
+[1m  SECTION 3: SHEBANG CHECK (#!/bin/bash)          [0m
+[1m[0;36m--------------------------------------------------[0m
+
+  [0;32m[OK][0m      array.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      background.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash1.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash2.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash3.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash4.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash5.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash6.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash7.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash8.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      break.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      case.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      check_root_function.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      exercise1.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      exercise2.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      exit_codes.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      for_files.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      for_ip.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      for_ls.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      for.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      function.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      if_elif.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      input_prompting.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      integer_comparison.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      linking_conditions.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      local_scope_variable.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      ping_with_arguments.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      print_args.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      array.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      background.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash1.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash2.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash3.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash4.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash5.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash6.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      blackhatbash7.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      break.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      case.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      check_root_function.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      exercise1.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      exit_codes.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      for_files.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      for_ip.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      for_ls.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      for.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      function.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      if_elif.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      input_prompting.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      integer_comparison.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      linking_conditions.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      local_scope_variable.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      ping_with_arguments.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      print_args.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      string_comparison.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      test_if_file_exists.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      until_loop.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      while_loop.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      while.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      string_comparison.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      test_if_file_exists.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      until_loop.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      while_loop.sh  →  has #!/bin/bash
+  [0;32m[OK][0m      while.sh  →  has #!/bin/bash
+
+  [1mScripts with correct shebang:  [0;32m64 / 64[0m
+  [1mScripts missing shebang:       [0;31m0[0m
+
+[1m[0;36m--------------------------------------------------[0m
+[1m  SECTION 4: COMMIT SCHEDULE CHECK                [0m
+[1m  (Mon & Wed, 7-9 AM Ecuador = 12-14 UTC)        [0m
+[1m[0;36m--------------------------------------------------[0m
+
+  [0;32m[IN CLASS][0m  ec6ae34 | 2026-06-17 08:26:59 (Ecuador) | Fix execute permission on exercise2.sh and ru
+  [0;32m[IN CLASS][0m  6ab64eb | 2026-06-17 08:17:54 (Ecuador) | Demonstrate fg and bg commands to manage fore
+  [0;32m[IN CLASS][0m  55fe521 | 2026-06-17 08:14:08 (Ecuador) | Run sleep as background process and Verify wi
+  [0;32m[IN CLASS][0m  81cfea0 | 2026-06-17 08:09:59 (Ecuador) | Add sed commands to delete and Extract specif
+  [0;32m[IN CLASS][0m  56f8f42 | 2026-06-17 08:00:44 (Ecuador) | Remove all spaces from log.txt and save resul
+  [0;32m[IN CLASS][0m  f086fb0 | 2026-06-17 07:58:47 (Ecuador) | Add sed substitution examples to replace Mozi
+  [0;32m[IN CLASS][0m  b6188ca | 2026-06-17 07:48:29 (Ecuador) | Add grep and awk pipeline to extract URLs req
+  [0;32m[IN CLASS][0m  ded8bef | 2026-06-17 07:47:06 (Ecuador) | Add awk NR filter to print only the first 10 
+  [0;32m[IN CLASS][0m  7c8179f | 2026-06-17 07:41:22 (Ecuador) | Add awk one liners to extract fields from log
+  [1;33m[OUTSIDE] [0m  aa056d5 | 2026-06-15 13:05:46 (Ecuador) | Add comments to block 7, score calculation an
+  [1;33m[OUTSIDE] [0m  9d8ab8d | 2026-06-15 13:03:33 (Ecuador) | Add comments to block 5, commit schedule chec
+  [1;33m[OUTSIDE] [0m  58a24da | 2026-06-15 12:55:03 (Ecuador) | Add comments to block 4, shebang check sectio
+  [1;33m[OUTSIDE] [0m  bea5258 | 2026-06-15 12:43:14 (Ecuador) | Add comments to block 4, expected files check
+  [1;33m[OUTSIDE] [0m  8a98937 | 2026-06-15 12:40:51 (Ecuador) | Add comments to block 3, file reading and lin
+  [1;33m[OUTSIDE] [0m  1d296c6 | 2026-06-15 12:31:41 (Ecuador) | Add comments to block 2, argument validation 
+  [1;33m[OUTSIDE] [0m  ad8971c | 2026-06-15 12:27:27 (Ecuador) | Add comments to block 1, colors, settings and
+  [1;33m[OUTSIDE] [0m  56140eb | 2026-06-15 12:21:09 (Ecuador) | Add exercise2.sh audit script with scoring an
+  [0;32m[IN CLASS][0m  ed08cfd | 2026-06-15 08:14:39 (Ecuador) | Add awk command to extract first field from l
+  [0;32m[IN CLASS][0m  c12f80f | 2026-06-15 08:12:46 (Ecuador) | Add grep examples with case insensitive searc
+  [0;32m[IN CLASS][0m  52f85d1 | 2026-06-15 08:06:50 (Ecuador) | Add grep script demonstrating single and Mult
+  [0;32m[IN CLASS][0m  814daa3 | 2026-06-15 07:58:55 (Ecuador) | Add log.txt
+  [0;32m[IN CLASS][0m  1c8d2a5 | 2026-06-15 07:53:42 (Ecuador) | Add case script to identify network based on 
+  [0;32m[IN CLASS][0m  c43c5d7 | 2026-06-15 07:47:39 (Ecuador) | Add loop script skipping example_file1 and Wr
+  [0;32m[IN CLASS][0m  c10888c | 2026-06-15 07:42:03 (Ecuador) | Add while loop script with break statement an
+  [0;32m[IN CLASS][0m  58df02a | 2026-06-15 07:39:58 (Ecuador) | Add loop script listing files in root directo
+  [0;32m[IN CLASS][0m  18adb1f | 2026-06-15 07:38:45 (Ecuador) | Add loop script listing files in current dire
+  [0;32m[IN CLASS][0m  b3402d6 | 2026-06-15 07:36:42 (Ecuador) | Add loop script iterating over all IP address
+  [0;32m[IN CLASS][0m  15d920a | 2026-06-15 07:31:02 (Ecuador) | Add loop script printing numbers 1 to 10 usin
+  [0;32m[IN CLASS][0m  579d6c9 | 2026-06-15 07:27:00 (Ecuador) | Add until loop script to monitor file content
+  [0;32m[IN CLASS][0m  1657bef | 2026-06-10 08:48:42 (Ecuador) | Add while loop with file stop signal and Test
+  [0;32m[IN CLASS][0m  2580115 | 2026-06-10 08:40:19 (Ecuador) | Add infinite while loop with 2 second sleep b
+  [0;32m[IN CLASS][0m  95a3b07 | 2026-06-10 08:31:34 (Ecuador) | Add function to receive and Print positional 
+  [0;32m[IN CLASS][0m  ea05e57 | 2026-06-10 08:26:40 (Ecuador) | Add function to check root privileges using E
+  [0;32m[IN CLASS][0m  97a54d7 | 2026-06-10 08:12:58 (Ecuador) | Add function definition and Call to print Bla
+  [0;32m[IN CLASS][0m  89b7043 | 2026-06-10 08:06:27 (Ecuador) | Add the comment of the result 4
+  [0;32m[IN CLASS][0m  d88ab5c | 2026-06-10 08:04:51 (Ecuador) | Add note explaining exit code behavior when n
+  [0;32m[IN CLASS][0m  dc9a161 | 2026-06-10 07:55:11 (Ecuador) | Add command exit code as if condition to veri
+  [0;32m[IN CLASS][0m  c4680bf | 2026-06-10 07:48:11 (Ecuador) | Add file and directory checks using && and ||
+  [0;32m[IN CLASS][0m  4ac03bf | 2026-06-10 07:41:41 (Ecuador) | Add combined file existence and size check us
+  [0;32m[IN CLASS][0m  07467dc | 2026-06-10 07:35:23 (Ecuador) | Swap variable values to demonstrate true -gt 
+  [0;32m[IN CLASS][0m  1421234 | 2026-06-10 07:34:31 (Ecuador) | Add numeric comparison using -gt operator to 
+  [0;32m[IN CLASS][0m  9d3bd70 | 2026-06-10 07:32:35 (Ecuador) | Add string comparison using if-else to check 
+  [0;32m[IN CLASS][0m  c82549c | 2026-06-10 07:31:08 (Ecuador) | Add negated file existence check to create fi
+  [0;32m[IN CLASS][0m  90caa84 | 2026-06-10 07:24:14 (Ecuador) | Add if-else flow control to check file existe
+  [1;33m[OUTSIDE] [0m  290b380 | 2026-06-08 11:41:54 (Ecuador) | Add input redirection and Here document usage
+  [1;33m[OUTSIDE] [0m  3773f1a | 2026-06-08 11:36:27 (Ecuador) | Add stdout and stderr redirection examples to
+  [1;33m[OUTSIDE] [0m  bb49566 | 2026-06-08 11:08:05 (Ecuador) | Add background process script and Command cha
+  [1;33m[OUTSIDE] [0m  b182912 | 2026-06-08 11:00:44 (Ecuador) | Update first array element and Print updated 
+  [1;33m[OUTSIDE] [0m  2b02aea | 2026-06-08 10:58:20 (Ecuador) | Remove array element using unset and Print re
+  [1;33m[OUTSIDE] [0m  b1299d2 | 2026-06-08 10:55:43 (Ecuador) | Add array definition and Access elements usin
+  [1;33m[OUTSIDE] [0m  8f07a7e | 2026-06-08 10:51:20 (Ecuador) | Add arithmetic operation using expr command
+  [1;33m[OUTSIDE] [0m  f423635 | 2026-06-08 10:48:59 (Ecuador) | Calculate multiplication using arithmetic exp
+  [1;33m[OUTSIDE] [0m  3555844 | 2026-06-08 10:45:51 (Ecuador) | Add arithmetic operation using let command wi
+  [0;32m[IN CLASS][0m  448a2a8 | 2026-06-08 08:39:54 (Ecuador) | Add exercise1.sh script with args date full n
+  [0;32m[IN CLASS][0m  dead4fb | 2026-06-08 08:25:41 (Ecuador) | Add custom exit code 223 to demonstrate exit 
+  [0;32m[IN CLASS][0m  c50be17 | 2026-06-08 08:15:09 (Ecuador) | Add script to experiment with exit codes usin
+  [0;32m[IN CLASS][0m  3ea13bd | 2026-06-08 08:12:16 (Ecuador) | Add interactive script to read and Display us
+  [0;32m[IN CLASS][0m  04fac7a | 2026-06-08 07:57:21 (Ecuador) | Add loop to iterate and Print each argument i
+  [0;32m[IN CLASS][0m  a80e392 | 2026-06-08 07:51:44 (Ecuador) | Limit ping to 3 packets using -c flag
+  [0;32m[IN CLASS][0m  49498f3 | 2026-06-08 07:45:00 (Ecuador) | Add file listing, filtering, script execution
+  [0;32m[IN CLASS][0m  61397a7 | 2026-06-01 08:51:31 (Ecuador) | Demonstrate Local vs Global Variable Scope
+  [0;32m[IN CLASS][0m  c76c371 | 2026-06-01 08:47:32 (Ecuador) | Use Local Variable in Function
+  [0;32m[IN CLASS][0m  7bbdb37 | 2026-06-01 08:44:31 (Ecuador) | Unset Variable
+  [0;32m[IN CLASS][0m  44107a7 | 2026-06-01 08:42:26 (Ecuador) | Capture Command Output in Variable
+  [0;32m[IN CLASS][0m  ae6a51c | 2026-06-01 08:39:58 (Ecuador) | Use Variable Without Braces
+  [0;32m[IN CLASS][0m  3dfef14 | 2026-06-01 08:36:37 (Ecuador) | Test Variable Expansion in Debug Mode
+  [0;32m[IN CLASS][0m  dbb882a | 2026-06-01 08:28:36 (Ecuador) | Add Debug Mode To Script
+  [0;32m[IN CLASS][0m  9c20507 | 2026-06-01 08:16:32 (Ecuador) | Toggle Debug Mode
+  [0;32m[IN CLASS][0m  65866ed | 2026-06-01 08:08:56 (Ecuador) | Validate Bash Syntax
+  [0;32m[IN CLASS][0m  bc2fdee | 2026-06-01 08:06:25 (Ecuador) | Run Restricted Bash Script
+  [0;32m[IN CLASS][0m  14825ac | 2026-06-01 08:02:55 (Ecuador) | Debug Bash Script
+  [0;32m[IN CLASS][0m  40c6d73 | 2026-06-01 07:49:06 (Ecuador) | Check System Status
+  [0;32m[IN CLASS][0m  9884e85 | 2026-06-01 07:46:49 (Ecuador) | Check System Vars
+  [0;32m[IN CLASS][0m  43b61d8 | 2026-06-01 07:45:35 (Ecuador) | Inspect Shell Env
+  [0;32m[IN CLASS][0m  58eeea7 | 2026-06-01 07:41:52 (Ecuador) | Change Terminal to Bash
+  [0;32m[IN CLASS][0m  b2cf87a | 2026-04-29 08:52:48 (Ecuador) | Change_colors_and_Configuration
+  [0;32m[IN CLASS][0m  2165cee | 2026-04-29 08:41:53 (Ecuador) | Change_Shell_Bash_to_ZSH
+  [0;32m[IN CLASS][0m  61362c6 | 2026-04-29 08:40:13 (Ecuador) | Rename_Jeanella_Paredes
+  [0;32m[IN CLASS][0m  04792bf | 2026-04-29 08:38:32 (Ecuador) | Reinstall_Files_Error_Rebuild
+  [0;32m[IN CLASS][0m  a3740cb | 2026-04-29 08:12:24 (Ecuador) | Change_Name
+  [0;32m[IN CLASS][0m  98fe685 | 2026-04-29 07:17:39 (Ecuador) | Delete Files
+  [0;32m[IN CLASS][0m  b6f0283 | 2026-03-25 08:44:39 (Ecuador) | file_system_Create_a_new_file_Show_the_inform
+  [0;32m[IN CLASS][0m  3b223ed | 2026-03-25 08:18:30 (Ecuador) | file_system_go_to_the_system_List_forlders_fi
+  [0;32m[IN CLASS][0m  ad2d44e | 2026-03-25 08:11:51 (Ecuador) | file_system_show_the_path_of_the_current_dire
+  [0;32m[IN CLASS][0m  588f73e | 2026-03-25 08:00:53 (Ecuador) | program_in_C_bin
+  [0;36m[BEFORE 2026-06-01][0m  5fd0f0e | 2026-03-24 21:25:01 (Ecuador) | practical_workshop_22_Validate_the_decrypt_of
+  [0;36m[BEFORE 2026-06-01][0m  ea6d6e2 | 2026-03-24 21:19:06 (Ecuador) | practical_workshop_21_Validate_the_signature_
+  [0;36m[BEFORE 2026-06-01][0m  41ef406 | 2026-03-24 20:52:47 (Ecuador) | practical_workshop_20_Verify_the_separate_sig
+  [0;36m[BEFORE 2026-06-01][0m  c83466d | 2026-03-24 20:45:10 (Ecuador) | practical_workshop_19_Sign_a_document_with_a_
+  [0;36m[BEFORE 2026-06-01][0m  7d7628e | 2026-03-24 20:29:58 (Ecuador) | practical_workshop_18_Traduction_Firsts_Comma
+  [0;36m[BEFORE 2026-06-01][0m  ed2dbdf | 2026-03-24 20:20:39 (Ecuador) | practical_workshop_17_Verify_the_signature_in
+  [0;36m[BEFORE 2026-06-01][0m  8461f8b | 2026-03-24 20:13:49 (Ecuador) | practical_workshop_16_Sign_the_document_in_bi
+  [0;36m[BEFORE 2026-06-01][0m  252e983 | 2026-03-24 20:08:24 (Ecuador) | practical_workshop_15_Return_to_verify_the_si
+  [0;36m[BEFORE 2026-06-01][0m  46cacdc | 2026-03-24 20:04:22 (Ecuador) | practical_workshop_14_Sign_the_key_of_our_dec
+  [0;36m[BEFORE 2026-06-01][0m  cffbf91 | 2026-03-24 19:56:56 (Ecuador) | practical_workshop_13_Web_of_Trust to_our_par
+  [0;36m[BEFORE 2026-06-01][0m  d0a6578 | 2026-03-24 19:50:22 (Ecuador) | practical_workshop_12_Verify_the signature_of
+  [0;36m[BEFORE 2026-06-01][0m  0beaf23 | 2026-03-24 19:35:32 (Ecuador) | practical_workshop_11
+  [0;32m[IN CLASS][0m  40b9e27 | 2026-03-23 08:48:50 (Ecuador) | practical_workshop_10
+  [0;32m[IN CLASS][0m  c6570c8 | 2026-03-23 08:36:01 (Ecuador) | practical_workshop_9
+  [0;32m[IN CLASS][0m  e554ff2 | 2026-03-23 08:23:12 (Ecuador) | practical_workshop_8
+  [0;32m[IN CLASS][0m  fc792e2 | 2026-03-23 08:11:57 (Ecuador) | practical_workshop_7
+  [0;32m[IN CLASS][0m  387b323 | 2026-03-23 08:08:13 (Ecuador) | practical_workshop_6
+  [0;32m[IN CLASS][0m  b60ca0c | 2026-03-23 08:06:42 (Ecuador) | practical_workshop_5
+  [0;32m[IN CLASS][0m  d9ceeae | 2026-03-23 07:59:09 (Ecuador) | practical_workshop_4
+  [0;36m[BEFORE 2026-06-01][0m  0c5da07 | 2026-03-18 09:02:25 (Ecuador) | practical_workshop_3
+  [0;36m[BEFORE 2026-06-01][0m  2c4d2ba | 2026-03-18 09:01:10 (Ecuador) | practical_workshop_2
+  [0;32m[IN CLASS][0m  d3c7170 | 2026-03-18 08:49:01 (Ecuador) | practical_workshop_1
+  [0;36m[BEFORE 2026-06-01][0m  f7d1851 | 2026-03-17 21:41:56 (Ecuador) | Initial commit
+
+  [1mTotal commits in branch:              [0;36m108[0m
+  [1mCommits during class:                 [0;32m76[0m
+  [1mCommits outside (penalized):          [1;33m17[0m
+  [1mCommits before 2026-06-01 (ignored):  [0;36m15[0m
+
+[1m[0;36m--------------------------------------------------[0m
+[1m  SECTION 5: FINAL SCORE (out of 100)            [0m
+[1m[0;36m--------------------------------------------------[0m
+
+  Starting score:                   [0;36m100.00[0m
+  Scripts missing:    [0;31m-0.00[0m  (0 × 0.25)
+  No shebang:         [0;31m-0.00[0m  (0 × 0.25)
+  Commits outside:    [0;31m-2.55[0m  (17 × 0.15)
+
+  [1m╔══════════════════════════════════╗[0m
+  [1m║  FINAL SCORE:  [0;32m97.45 / 100[0m[1m       ║[0m
+  [1m╚══════════════════════════════════╝[0m
+
+  [0;32mExcellent work! Everything looks great.[0m
+
+[1m[0;34m=================================================[0m
+[0;36mAudit complete.[0m
+[1m[0;34m=================================================[0m
+
