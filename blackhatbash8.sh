@@ -29,3 +29,12 @@ awk 'NR < 10' log.txt
 
 grep "42.236.10.117" log.txt | awk '{print $7}'
 # Search for lines containing the IP 42.236.10.117 in log.txt and print only the 7th field
+
+# Replace all occurrences of Mozilla with Godzilla in log.txt and print to terminal
+sed 's/Mozilla/Godzilla/g' log.txt
+# Replace all occurrences of Mozilla with Godzilla and save the result in a new file
+sed 's/Mozilla/Godzilla/g' log.txt > newlog.txt
+# Replace all occurrences of Mozilla with Godzilla directly in log.txt using -i flag
+sed -i 's/Mozilla/Godzilla/g' log.txt
+# Search for lines containing Godzilla in log.txt to verify the replacement worked
+grep "Godzilla" log.txt
